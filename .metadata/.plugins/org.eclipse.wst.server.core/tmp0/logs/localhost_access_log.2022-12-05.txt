@@ -3,3 +3,13 @@
 0:0:0:0:0:0:0:1 - - [05/Dec/2022:14:22:33 +0900] "GET /JSPBook_01/hello.jsp HTTP/1.1" 200 178
 127.0.0.1 - - [05/Dec/2022:15:09:53 +0900] "GET / HTTP/1.1" 404 807
 0:0:0:0:0:0:0:1 - - [05/Dec/2022:15:09:54 +0900] "GET /JSPBook_02/ch02/2-1-declaration01.jsp HTTP/1.1" 200 116
+127.0.0.1 - - [05/Dec/2022:16:09:07 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:09:08 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:38:22 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:38:25 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:38:51 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:41:36 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:41:44 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:41:45 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:41:50 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
+0:0:0:0:0:0:0:1 - - [05/Dec/2022:16:41:53 +0900] "GET /JSPBook_02/ch02/2-2-declaration02.jsp HTTP/1.1" 200 98
