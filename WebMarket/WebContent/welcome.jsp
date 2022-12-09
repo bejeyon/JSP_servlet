@@ -23,6 +23,7 @@
 				<%= tagline %>
 			</h3>
 			<%
+				response.setIntHeader("Refresh", 1);
 				Date day = new Date();
 				String am_pm;
 				int hour = day.getHours();
