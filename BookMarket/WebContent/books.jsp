@@ -30,12 +30,14 @@
 				<h3><%=book.getName()%></h3>
 				<p><%=book.getDescription()%></p>
 				<p><%=book.getAuthor() + " | " + book.getPublisher() +  " | " + book.getUnitPrice()%>원</p>
-				<hr>
+				<p> <a href="./book.jsp?id=<%=book.getBookId()%>"
+				class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a></p>
 			</div>
 			<%
 				}
 			%>
 		</div>
+		<hr>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
