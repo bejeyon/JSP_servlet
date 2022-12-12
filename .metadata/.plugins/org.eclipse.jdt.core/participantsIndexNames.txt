@@ -29,6 +29,8 @@ C:\JSP_servlet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2536748274.
 \JSPBook\src\main\java
 C:\JSP_servlet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3761538148.index
 \JSPBook\src\main\java
+C:\JSP_servlet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2201560075.index
+\AJAX_ORACLE\src
 C:\JSP_servlet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\974102909.index
 \pro07_22_11_23\src
 C:\JSP_servlet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2491699623.index
