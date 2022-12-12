@@ -26,7 +26,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * Servlet implementation class BoardController
  */
-//@WebServlet("/board/*")
+@WebServlet("/board/*")
 public class BoardController8 extends HttpServlet {
 	/**
 	 * 
