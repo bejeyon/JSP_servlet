@@ -153,7 +153,10 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\JSP_servlet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\JSP_servlet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\pro17_22_12_07" path="/pro17" reloadable="true" source="org.eclipse.jst.jee.server:pro17_22_12_07"/></Host>
+      <Context docBase="C:\JSP_servlet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\JSP_servlet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MVC2_ORACLE_Shop" path="/MVC2_ORACLE_Shop" reloadable="true" source="org.eclipse.jst.jee.server:MVC2_ORACLE_Shop">
+ <WatchedResource>WEB-INF/web.xml</WatchedResource>
+ <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="tiger2" type="javax.sql.DataSource" url="jdbc:oracle:thin:@127.0.0.1:1521/xepdb1" username="scott2"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
