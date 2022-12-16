@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BoardDAO;
 import model.BoardDTO;
 
-@WebServlet("/BoardListAction.do")
+@WebServlet("*.do")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static final int LISTCOUNT = 10; 
@@ -94,7 +94,9 @@ public class BoardController extends HttpServlet {
    		request.setAttribute("pagenum", pagenum);		  
    		request.setAttribute("total_pagenum", total_pagenum);   
 		request.setAttribute("total_record",total_record); 
-		request.setAttribute("boardlist", boardlist);								
+		request.setAttribute("boardlist", boardlist);
+		request.setAttribute("items", items);
+		request.setAttribute("text", text);
 	}
 	//인증된 사용자명 가져오기
 	public void requestLoginName(HttpServletRequest request){
@@ -121,8 +123,8 @@ public class BoardController extends HttpServlet {
 		System.out.println(request.getParameter("name"));
 		System.out.println(request.getParameter("title"));
 		System.out.println(request.getParameter("content"));
-		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
-		String writedate = formatter.format(new java.util.Date()); 
+//		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+//		String writedate = formatter.format(new java.util.Date()); 
 		
 //		board.setHit(0);
 		board.setWritedate(writedate);
@@ -137,7 +139,9 @@ public class BoardController extends HttpServlet {
 		int pagenum = Integer.parseInt(request.getParameter("pagenum"));	
 		
 		BoardDTO board = new BoardDTO();
-		board = dao.getBoardByNum(articleno, pagenum);		
+		board = dao.getBoardByNum(articleno, pagenum);
+
+//		dao.updateHit(articleno);
 		
 		request.setAttribute("articleno", articleno);		 
    		request.setAttribute("pagenum", pagenum); 

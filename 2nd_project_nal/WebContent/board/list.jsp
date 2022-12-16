@@ -4,13 +4,58 @@
     isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*"%>
+<%@ page import="model.BoardDTO"%>
+<%
+	String sessionId = (String) session.getAttribute("sessionId");
+	List boardList = (List) request.getAttribute("boardlist");
+	int total_record = ((Integer) request.getAttribute("total_record")).intValue();
+	int pagenum = ((Integer) request.getAttribute("pagenum")).intValue();
+	int total_pagenum = ((Integer) request.getAttribute("total_pagenum")).intValue();
+// 	String RequestURI = request.getRequestURI();
+	String searchCode = (String) request.getAttribute("items");
+	String searchText = (String) request.getAttribute("text");
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2nd</title>
+    <title>자유게시판</title>
+    <script type="text/javascript">
+		function createFreeboard() {	
+
+			if (${sessionId==null}) {
+				alert("로그인 해주세요.");
+				return false;
+			}
+	
+			location.href = "./BoardWriteForm.do?id=<%=sessionId%>"
+		}
+		
+		function search() {	
+			
+			var itmes = document.querySelector("#items");
+			itmes.setAttribute("items", items);
+			var text = document.querySelector("#text");
+			text.setAttribute("text", text);
+			
+			var uri = "./BoardListAction.do?";
+			
+			uri += "items";
+			uri += "=";
+			uri += encodeURIComponent(items.value);
+			uri += "&";
+			uri += "text";
+			uri += "=";
+			uri += encodeURIComponent(text.value);
+			
+// 			location.href = './BoardListAction.do?searchKeyCode=searchKeyCode&searchKeyWord=searchKeyWord'
+// 			location.href = "./BoardListAction.do?items=" + ${param.items} + "&text=" + ${param.text};
+			location.href = uri
+		}
+	</script>
 </head>
 <body>
     <div class="top"></div>
@@ -18,7 +63,7 @@
     <div class="subTitle"></div>
     <div class="inner">
         <div class="contents" id="bodyWrap">
-            <h3 class="title">자유게시판</h3>
+            <h3 class="title"><a href="<c:url value="./BoardListAction.do" /> "><%=searchCode + searchText%>자유게시판</a></h3>
             <div class="subContents">
                 <div class="body" id="bodyCon">
                     <div class="bodyBox01">
@@ -34,20 +79,21 @@
 						</div>
                         <div class="conBottomBox conBottomBox2">
                             <div class="outputTxt">
-                                <div class="leftTxt">총 1,364건</div>
+                                <div class="leftTxt">총 <%=total_record%>건</div>
                                 <div class="rightAlign all">
                            <span class="left01 left01_32">
-                            <select id="searchKeyCode" name="searchKeyCode" title="검색항목">
-                                <option value="00">전체</option>
-                                <option value="01">제목</option>
-                                <option value="02">내용</option>
-                                <option value="03">작성자</option>
-                            </select>
-                        </span>
-                                    <span class="left02 left02_49 left01_w215">
-                            <input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" onkeydown="javascript:if(event.keyCode == 13) search();" type="text" value="">
-                        </span>
-                                    <span class="left03 left03_01">
+	                            <select id="items" name="items" title="검색항목">
+	                                <option value="title">제목</option>
+	                                <option value="content">내용</option>
+	                                <option value="member_name">작성자</option>
+	                            </select>
+	                        </span>
+	                        <span class="left02 left02_49 left01_w215">
+                        	
+	                            <input id="text" name="text" title="검색어 입력" type="text">
+                            
+	                        </span>
+                            <span class="left03 left03_01">
                                <span class="btn"><a href="javascript:search();">검색</a></span>
                            </span>
                                 </div>
@@ -74,12 +120,6 @@
                                     
 									<tbody>
 									
-									<tr>
-										<td>January</td>
-										<td>$100</td>
-										<td>January</td>
-										<td>$100</td>
-									</tr>
 									<c:choose>
 										<c:when test="${boardlist==null}">
 											<tr>
@@ -90,7 +130,7 @@
 											<c:forEach var="list" items="${boardlist}">
 												<tr>
 													<td>${list.articleno}</td>
-													<td>${list.title}</td>
+													<td><a href="./BoardViewAction.do?articleno=${list.articleno}&pagenum=<%=pagenum%>">${list.title}</a></td>
 													<td>${list.member_name}</td>
 													<td>${list.writedate}</td>
 													<td>${list.hit}</td>
@@ -98,9 +138,67 @@
 											</c:forEach>
 										</c:when>
 									</c:choose>
+									
 									</tbody>
 									
                                 </table>
+                            </div>
+                            <div class="paging">
+                                <c:set var="pagenum" value="<%=pagenum%>" />
+           
+                                	<c:if test="${param.text==null}">
+										<c:if test="${pagenum!=1}">
+											<a href="<c:url value="./BoardListAction.do?pagenum=1" /> ">맨 처음으로</a>
+											<a href="<c:url value="./BoardListAction.do?pagenum=${pagenum - 1}" /> ">이전</a>
+										</c:if>
+										
+										<c:forEach var="i" begin="<%=pagenum > 6 ? pagenum - 5 : 1 %>" end="<%=(pagenum > 6 ? pagenum + 5 : 11) > total_pagenum ? total_pagenum : (pagenum > 6 ? pagenum + 5 : 11)%>">
+											<a href="<c:url value="./BoardListAction.do?pagenum=${i}" /> ">
+												<c:choose>
+													<c:when test="${pagenum==i}">
+														<font color='4C5317'><b> [${i}]</b></font>
+													</c:when>
+													<c:otherwise>
+														<font color='4C5317'> [${i}]</font>
+						
+													</c:otherwise>
+												</c:choose>
+											</a>
+										</c:forEach>
+										<c:if test="${pagenum!=total_pagenum}">
+											<a href="<c:url value="./BoardListAction.do?pagenum=${pagenum + 1}" /> ">다음</a>
+											<a href="<c:url value="./BoardListAction.do?pagenum=${total_pagenum}" /> ">맨 마지막으로</a>
+										</c:if>
+									</c:if>                     
+                                
+                                	<c:if test="${param.text!=null}">
+										<c:if test="${pagenum!=1}">
+											<a href="<c:url value="./BoardListAction.do?pagenum=1&items=${param.items}&text=${param.text}" /> ">맨 처음으로</a>
+											<a href="<c:url value="./BoardListAction.do?pagenum=${pagenum - 1}&items=${param.items}&text=${param.text}" /> ">이전</a>
+										</c:if>
+										
+										<c:forEach var="i" begin="<%=pagenum > 6 ? pagenum - 5 : 1 %>" end="<%=(pagenum > 6 ? pagenum + 5 : 11) > total_pagenum ? total_pagenum : (pagenum > 6 ? pagenum + 5 : 11)%>">
+											<a href="<c:url value="./BoardListAction.do?pagenum=${i}&items=${param.items}&text=${param.text}" /> ">
+												<c:choose>
+													<c:when test="${pagenum==i}">
+														<font color='4C5317'><b> [${i}]</b></font>
+													</c:when>
+													<c:otherwise>
+														<font color='4C5317'> [${i}]</font>
+						
+													</c:otherwise>
+												</c:choose>
+											</a>
+										</c:forEach>
+										<c:if test="${pagenum!=total_pagenum}">
+											<a href="<c:url value="./BoardListAction.do?pagenum=${pagenum + 1}&items=${param.items}&text=${param.text}" /> ">다음</a>
+											<a href="<c:url value="./BoardListAction.do?pagenum=${total_pagenum}&items=${param.items}&text=${param.text}" /> ">맨 마지막으로</a>
+										</c:if>
+									</c:if>
+									
+                                <input id="pageIndex" name="pageIndex" type="hidden" value="1">
+
+                                <div class="btn"><a href="javascript:createFreeboard();">글쓰기</a></div>
                             </div>
                         </div>
                     </div>

@@ -32,9 +32,9 @@ public class BoardDAO {
 		String sql;
 		
 		if (items == null && text == null)
-			sql = "SELECT COUNT(*)	FROM nal.freeboard";
+			sql = "SELECT COUNT(*)	FROM nal.freeboard where deletion = 0";
 		else
-			sql = "SELECT COUNT(*)	FROM nal.freeboard where " + items + " like '%" + text + "%'";
+			sql = "SELECT COUNT(*)	FROM nal.freeboard where (" + items + " like '%" + text + "%') AND (deletion = 0)";
 		
 		try {
 			conn = DBManager.getConnection();
@@ -73,9 +73,9 @@ public class BoardDAO {
 		String sql;
 
 		if (items == null && text == null)
-			sql = "SELECT * FROM nal.freeboard ORDER BY articleno DESC";
+			sql = "SELECT * FROM nal.freeboard where deletion = 0 ORDER BY articleno DESC";
 		else
-			sql = "SELECT * FROM nal.freeboard where " + items + " like '%" + text + "%' ORDER BY articleno DESC ";
+			sql = "SELECT * FROM nal.freeboard where (" + items + " like '%" + text + "%') AND (deletion = 0) ORDER BY articleno DESC ";
 
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 
@@ -162,15 +162,15 @@ public class BoardDAO {
 		try {
 			conn = DBManager.getConnection();		
 
-			String sql = "insert into nal.freeboard values(articleno_seq.nextval, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into nal.freeboard values(articleno_seq.nextval, ?, ?, ?, ?)";
 		
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
-			pstmt.setString(3, board.getWritedate());
-			pstmt.setString(4, board.getMember_id());
-			pstmt.setString(5, board.getMember_name());
-			pstmt.setInt(6, board.getDeletion());
+//			pstmt.setString(3, board.getWritedate());
+			pstmt.setString(3, board.getMember_id());
+			pstmt.setString(4, board.getMember_name());
+//			pstmt.setInt(6, board.getDeletion());
 			pstmt.executeUpdate();
 		} catch (Exception ex) {
 			System.out.println("insertBoard() 에러 : " + ex);
@@ -195,7 +195,7 @@ public class BoardDAO {
 		try {
 			conn = DBManager.getConnection();
 
-			String sql = "select hit from board where num = ? ";
+			String sql = "select hit from freeboard where articleno = ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
@@ -205,7 +205,7 @@ public class BoardDAO {
 				hit = rs.getInt("hit") + 1;
 		
 
-			sql = "update board set hit=? where num=?";
+			sql = "update freeboard set hit=? where articleno = ? ";
 			pstmt = conn.prepareStatement(sql);		
 			pstmt.setInt(1, hit);
 			pstmt.setInt(2, num);
@@ -230,7 +230,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		BoardDTO board = null;
+		BoardDTO board = new BoardDTO();
 
 		updateHit(articleno);
 		String sql = "select * from nal.freeboard where articleno = ? ";
@@ -246,6 +246,7 @@ public class BoardDAO {
 				board.setTitle(rs.getString("title"));
 				board.setContent(rs.getString("content"));
 				board.setWritedate(rs.getString("writedate"));
+				board.setHit(rs.getInt("hit"));
 				board.setMember_id(rs.getString("member_id"));
 				board.setMember_name(rs.getString("member_name"));
 				board.setDeletion(rs.getInt("deletion"));
