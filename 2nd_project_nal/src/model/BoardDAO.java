@@ -125,7 +125,7 @@ public class BoardDAO {
 		ResultSet rs = null;	
 
 		String name = null;
-		String sql = "select * from member where member_id = ? ";
+		String sql = "select * from nal.member where member_id = ? ";
 
 		try {
 			conn = DBManager.getConnection();
@@ -134,7 +134,7 @@ public class BoardDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) 
-				name = rs.getString("name");	
+				name = rs.getString("member_name");	
 			
 			return name;
 		} catch (Exception ex) {
@@ -162,14 +162,14 @@ public class BoardDAO {
 		try {
 			conn = DBManager.getConnection();		
 
-			String sql = "insert into nal.freeboard values(articleno_seq.nextval, ?, ?, ?, ?)";
+			String sql = "insert into nal.freeboard(articleno, title, content, member_id, member_name) values(articleno_seq.nextval, ?, ?, ?, ?)";
 		
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
 //			pstmt.setString(3, board.getWritedate());
 			pstmt.setString(3, board.getMember_id());
-			pstmt.setString(4, board.getMember_name());
+			pstmt.setString(4, BoardDAO.getInstance().getLoginNameById(board.getMember_id()));
 //			pstmt.setInt(6, board.getDeletion());
 			pstmt.executeUpdate();
 		} catch (Exception ex) {

@@ -34,11 +34,11 @@ public class BoardController extends HttpServlet {
 	
 		if (command.equals("/BoardListAction.do")) {//등록된 글 목록 페이지 출력하기
 			requestBoardList(request);
-			RequestDispatcher rd = request.getRequestDispatcher("./board/list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("./freeboard/list.jsp");
 			rd.forward(request, response);
 		} else if (command.equals("/BoardWriteForm.do")) { // 글 등록 페이지 출력하기
 				requestLoginName(request);
-				RequestDispatcher rd = request.getRequestDispatcher("./board/writeForm.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("./freeboard/writeForm.jsp");
 				rd.forward(request, response);				
 		} else if (command.equals("/BoardWriteAction.do")) {// 새로운 글 등록하기
 				requestBoardWrite(request);
@@ -49,7 +49,7 @@ public class BoardController extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("/BoardView.do");
 				rd.forward(request, response);						
 		} else if (command.equals("/BoardView.do")) { //글 상세 페이지 출력하기
-				RequestDispatcher rd = request.getRequestDispatcher("./board/view.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("./freeboard/view.jsp");
 				rd.forward(request, response);	
 		} else if (command.equals("/BoardUpdateAction.do")) { //선택된 글의 조회수 증가하기
 				requestBoardUpdate(request);
@@ -116,18 +116,18 @@ public class BoardController extends HttpServlet {
 		
 		BoardDTO board = new BoardDTO();
 		board.setMember_id(request.getParameter("member_id"));
-		board.setMember_name(request.getParameter("member_name"));
+//		board.setMember_name(request.getParameter("member_name"));
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));	
 		
-		System.out.println(request.getParameter("name"));
+		System.out.println(request.getParameter("member_id"));
 		System.out.println(request.getParameter("title"));
 		System.out.println(request.getParameter("content"));
 //		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
 //		String writedate = formatter.format(new java.util.Date()); 
 		
 //		board.setHit(0);
-		board.setWritedate(writedate);
+//		board.setWritedate(writedate);
 		
 		dao.insertBoard(board);								
 	}
@@ -165,7 +165,7 @@ public class BoardController extends HttpServlet {
 		 String writedate = formatter.format(new java.util.Date()); 
 		 
 //		 board.setHit(0);
-		 board.setWritedate(writedate);		
+//		 board.setWritedate(writedate);		
 		
 		 dao.updateBoard(board);								
 	}
