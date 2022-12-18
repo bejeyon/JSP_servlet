@@ -10,6 +10,7 @@
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
 	BoardDTO article = (BoardDTO) request.getAttribute("board");
+	int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -100,7 +101,11 @@
     
     	function reList() {	
 	
-			location.href = "./BoardListAction.do?items=${param.items}&text=${param.text}"
+			if (<%=request.getParameter("text")%>!=null) {
+				location.href = "./BoardListAction.do?pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}"
+			} else {
+				location.href = "./BoardListAction.do?pagenum=<%=pagenum%>"
+			}
 		}
 		
 // 		function insertFreeBoard() {	

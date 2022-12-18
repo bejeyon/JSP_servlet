@@ -30,8 +30,14 @@
 				alert("로그인 해주세요.");
 				return false;
 			}
+			
+			if (<%=request.getParameter("text")%>!=null) {
+				location.href = "./BoardWriteForm.do?id=<%=sessionId%>&pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}"
+			} else {
+				location.href = "./BoardWriteForm.do?id=<%=sessionId%>&pagenum=<%=pagenum%>"
+			}
 	
-			location.href = "./BoardWriteForm.do?id=<%=sessionId%>&items=${param.items}&text=${param.text}"
+			
 		}
 		
 		function search() {	
