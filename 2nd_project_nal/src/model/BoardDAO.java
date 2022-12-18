@@ -308,7 +308,7 @@ public class BoardDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;		
 
-		String sql = "delete from board where articleno = ? ";	
+		String sql = "UPDATE nal.freeboard SET deletion = 1 where articleno = ? ";	
 
 		try {
 			conn = DBManager.getConnection();

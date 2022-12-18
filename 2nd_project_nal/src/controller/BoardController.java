@@ -161,12 +161,12 @@ public class BoardController extends HttpServlet {
 		
 		BoardDTO board = new BoardDTO();		
 		board.setArticleno(articleno);
-		board.setMember_name(request.getParameter("name"));
+//		board.setMember_name(request.getParameter("name"));
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));		
 		
-		 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
-		 String writedate = formatter.format(new java.util.Date()); 
+//		 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
+//		 String writedate = formatter.format(new java.util.Date()); 
 		 
 //		 board.setHit(0);
 //		 board.setWritedate(writedate);		

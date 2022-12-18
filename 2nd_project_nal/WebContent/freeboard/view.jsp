@@ -92,7 +92,12 @@
 	
 	                        <div class="btnListGo">
 	                            <a class="ml10 m_width50px" href="javascript:reList();">목록</a>
-	
+								<c:set var="userId" value="<%=article.getMember_id()%>" />
+								<c:if test="${sessionId==userId}">
+									<p>
+										<a	href="./BoardDeleteAction.do?articleno=<%=article.getArticleno()%>&pagenum=<%=pagenum%>"	class="btn btn-danger"> 삭제</a> 
+										<a	href="./BoardDeleteAction.do?articleno=<%=article.getArticleno()%>&pagenum=<%=pagenum%>"	class="btn btn-danger"> 수정</a> 
+								</c:if>
 	                            
 	                        </div><!-- //btnListGo -->
 	
