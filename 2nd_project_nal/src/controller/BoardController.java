@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.BoardDAO;
 import model.BoardDTO;
@@ -42,8 +43,11 @@ public class BoardController extends HttpServlet {
 				rd.forward(request, response);				
 		} else if (command.equals("/BoardWriteAction.do")) {// 새로운 글 등록하기
 				requestBoardWrite(request);
-				RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");
-				rd.forward(request, response);						
+//				RequestDispatcher rd = request.getRequestDispatcher("/BoardListAction.do");
+//				rd.forward(request, response);						
+				HttpSession session = request.getSession(); // 세션에 담기
+//				request.setAttribute("nickName", "Gurum");
+				response.sendRedirect("./BoardListAction.do");
 		} else if (command.equals("/BoardViewAction.do")) {//선택된 글 상세 페이지 가져오기
 				requestBoardView(request);
 				RequestDispatcher rd = request.getRequestDispatcher("/BoardView.do");
