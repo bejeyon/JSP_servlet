@@ -34,12 +34,17 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 	
 		if (command.equals("/BoardListAction.do")) {//등록된 글 목록 페이지 출력하기
-			requestBoardList(request);
-			RequestDispatcher rd = request.getRequestDispatcher("./freeboard/list.jsp");
-			rd.forward(request, response);
+				requestBoardList(request);
+				RequestDispatcher rd = request.getRequestDispatcher("./freeboard/list.jsp");
+				rd.forward(request, response);
 		} else if (command.equals("/BoardWriteForm.do")) { // 글 등록 페이지 출력하기
 				requestLoginName(request);
 				RequestDispatcher rd = request.getRequestDispatcher("./freeboard/writeForm.jsp");
+				rd.forward(request, response);				
+		} else if (command.equals("/BoardRewriteForm.do")) { // 글 수정 페이지 출력하기
+				requestLoginName(request);
+				requestBoardView(request);
+				RequestDispatcher rd = request.getRequestDispatcher("./freeboard/rewriteForm.jsp");
 				rd.forward(request, response);				
 		} else if (command.equals("/BoardWriteAction.do")) {// 새로운 글 등록하기
 				requestBoardWrite(request);

@@ -96,7 +96,7 @@
 								<c:if test="${sessionId==userId}">
 									<p>
 										<a	href="./BoardDeleteAction.do?articleno=<%=article.getArticleno()%>&pagenum=<%=pagenum%>"	class="btn btn-danger"> 삭제</a> 
-										<a	href="./BoardDeleteAction.do?articleno=<%=article.getArticleno()%>&pagenum=<%=pagenum%>"	class="btn btn-danger"> 수정</a> 
+										<a	href="./BoardRewriteForm.do?articleno=<%=article.getArticleno()%>&pagenum=<%=pagenum%>"	class="btn btn-danger"> 수정</a> 
 								</c:if>
 	                            
 	                        </div><!-- //btnListGo -->
