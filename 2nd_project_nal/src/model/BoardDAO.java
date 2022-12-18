@@ -73,9 +73,9 @@ public class BoardDAO {
 		String sql;
 
 		if (items == null && text == null)
-			sql = "SELECT * FROM nal.freeboard where deletion = 0 ORDER BY articleno DESC";
+			sql = "SELECT * FROM nal.freeboard WHERE deletion = 0 ORDER BY articleno DESC";
 		else
-			sql = "SELECT * FROM nal.freeboard where (" + items + " like '%" + text + "%') AND (deletion = 0) ORDER BY articleno DESC ";
+			sql = "SELECT * FROM nal.freeboard WHERE (" + items + " like '%" + text + "%') AND (deletion = 0) ORDER BY articleno DESC ";
 
 		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
 

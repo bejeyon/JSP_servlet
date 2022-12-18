@@ -140,7 +140,15 @@
 											<c:forEach var="list" items="${boardlist}">
 												<tr>
 													<td>${list.articleno}</td>
-													<td><a href="./BoardViewAction.do?articleno=${list.articleno}&pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}">${list.title}</a></td>
+													<c:choose>
+														<c:when test="${param.text==null}">
+															<td><a href="./BoardViewAction.do?articleno=${list.articleno}&pagenum=<%=pagenum%>">${list.title}</a></td>
+														</c:when>
+														<c:otherwise>
+															<td><a href="./BoardViewAction.do?articleno=${list.articleno}&pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}">${list.title}</a></td>
+							
+														</c:otherwise>
+													</c:choose>
 													<td>${list.member_name}</td>
 													<td>${list.writedate}</td>
 													<td>${list.hit}</td>

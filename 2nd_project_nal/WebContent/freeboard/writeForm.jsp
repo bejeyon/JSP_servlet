@@ -77,11 +77,11 @@
 	  		
 	  		var msg = "자유게시판 등록하시겠습니까?";
 	  		
-// 	  		if(isValid()){
-// 	  			if(confirm(msg)){
+	  		if(isValid()){
+	  			if(confirm(msg)){
 	  				$("#writing").attr("action", "./BoardWriteAction.do").submit();
-// 	  			}
-// 	  		}
+	  			}
+	  		}
 	  	}
 	  	
 	

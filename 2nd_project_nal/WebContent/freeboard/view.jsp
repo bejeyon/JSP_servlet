@@ -22,8 +22,13 @@
     <title>자유게시판</title>
     <script type="text/javascript">
 		function reList() {	
-	
-			location.href = "./BoardListAction.do?pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}"
+			
+			
+			if (<%=request.getParameter("text")%>!=null) {
+				location.href = "./BoardListAction.do?pagenum=<%=pagenum%>&items=${param.items}&text=${param.text}"
+			} else {
+				location.href = "./BoardListAction.do?pagenum=<%=pagenum%>"
+			}
 		}
 	</script>
 </head>
