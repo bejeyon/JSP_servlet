@@ -165,6 +165,42 @@
      <Manager pathname=""/>
     
     <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50" maxWait="-1" name="jdbc/oracle" password="nal" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521/xepdb1" username="nal"/>
+</Context><Context docBase="C:\4th\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\nal_project" path="/juyoung_project" reloadable="true" source="org.eclipse.jst.jee.server:nal_project">
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+     <Manager pathname=""/>
+    
+    <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50" maxWait="-1" name="jdbc/oracle" password="nal" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521/xepdb1" username="nal"/>
+</Context><Context docBase="C:\4th\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\nal_edit" path="/nal_edit" reloadable="true" source="org.eclipse.jst.jee.server:nal_edit">
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+     <Manager pathname=""/>
+    
+    <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50" maxWait="-1" name="jdbc/oracle" password="nal" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521/xepdb1" username="nal"/>
+</Context><Context docBase="C:\4th\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\_nal_please" path="/_nal_please" reloadable="true" source="org.eclipse.jst.jee.server:_nal_please">
+
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+     <Manager pathname=""/>
+    
+    <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50" maxWait="-1" name="jdbc/oracle" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521/xepdb1" username="scott"/>
 </Context></Host>
     </Engine>
   </Service>

@@ -80,7 +80,8 @@
 	  		
 	  		if(isValid()){
 	  			if(confirm(msg)){
-	  				$("#writing").attr("action", "./BoardWriteAction.do").submit();
+	  				$("#writing").attr("method", "post");
+	  				$("#writing").attr("action", "./BoardUpdateAction.do").submit();
 	  			}
 	  		}
 	  	}
