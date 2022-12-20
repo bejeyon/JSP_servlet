@@ -12,7 +12,6 @@ public class FreeboardVO {
 
 	public FreeboardVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getArticleno() {
