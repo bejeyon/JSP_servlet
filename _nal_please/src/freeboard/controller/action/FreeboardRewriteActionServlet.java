@@ -1,4 +1,4 @@
-package freeboard.controller;
+package freeboard.controller.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import freeboard.model.FreeboardDAO;
 import freeboard.model.FreeboardVO;
 
 /**
- * Servlet implementation class FreeboardViewServlet
+ * Servlet implementation class FreeboardRewriteActionServlet
  */
-@WebServlet("/freeboardview.do")
-public class FreeboardViewServlet extends HttpServlet {
+@WebServlet("/freeboardrewriteaction.do")
+public class FreeboardRewriteActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -44,16 +44,36 @@ public class FreeboardViewServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
-		int articleno = Integer.parseInt(request.getParameter("articleno"));	
-		int nowpage = Integer.parseInt(request.getParameter("nowpage"));
+		List<FreeboardVO> volist = new ArrayList<FreeboardVO>();
+		
+		int nowpage = 1;
+		int limit = LISTCOUNT;
+		
+		if(request.getParameter("nowpage") != null) {
+			nowpage = Integer.parseInt(request.getParameter("nowpage"));
+		}
 		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
-		FreeboardVO vo = new FreeboardVO();
-		vo = dao.getArticleByArticleno(articleno, nowpage);
+		int totalarticlelistcnt = dao.getTotalArticleListCount(searchKeyCode, searchKeyWord);
+		volist = dao.getTotalArticleList(nowpage, limit, searchKeyCode, searchKeyWord);
+		
+		int totalpage = 0;
+		
+		if(totalarticlelistcnt % limit == 0) {
+			totalpage = totalarticlelistcnt / limit;
+			Math.floor(totalpage);
+		} else {
+			totalpage = totalarticlelistcnt / limit;
+			Math.floor(totalpage);
+			totalpage = totalpage + 1;
+		}
 		
 		request.setAttribute("nowpage", nowpage);
+		request.setAttribute("totalpage", totalpage);
+		request.setAttribute("totalarticlelistcnt", totalarticlelistcnt);
+		request.setAttribute("volist", volist);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
 		
