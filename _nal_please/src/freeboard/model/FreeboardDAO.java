@@ -15,7 +15,7 @@ public class FreeboardDAO {
 		super();
 	}
 	
-	private static FreeboardDAO getInstance() {
+	public static FreeboardDAO getInstance() {
 		if(instance == null) {
 			instance = new FreeboardDAO();
 		}
