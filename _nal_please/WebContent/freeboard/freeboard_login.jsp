@@ -9,6 +9,6 @@
 <body>
 	<% session.setAttribute("sessionId", "member01");
 	%>
-	<h1 class="title"><a href="http://localhost:8080/_nal_please/freeboard/controller/freeboardlist.do">글쓰려고 로그인하기!!</a></h1>
+	<h1 class="title"><a href="http://localhost:8080/_nal_please/usermadang/board/freeBoardList.do">글쓰려고 로그인하기!!</a></h1>
 </body>
 </html>

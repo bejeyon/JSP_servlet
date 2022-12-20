@@ -54,7 +54,7 @@ public class FreeboardDeleteActionServlet extends HttpServlet {
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeBoardList.do");
+		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/controller/freeBoardList.do");
 		rd.forward(request, response);
 	}
 
