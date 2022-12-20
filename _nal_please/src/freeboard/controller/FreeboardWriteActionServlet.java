@@ -1,4 +1,4 @@
-package freeboard.controller.action;
+package freeboard.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import freeboard.model.FreeboardDAO;
 import freeboard.model.FreeboardVO;
@@ -17,7 +18,7 @@ import freeboard.model.FreeboardVO;
 /**
  * Servlet implementation class FreeboardWriteActionServlet
  */
-@WebServlet("/freeboardwriteaction.do")
+@WebServlet("/freeboardProc.do")
 public class FreeboardWriteActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,36 +45,24 @@ public class FreeboardWriteActionServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
-		List<FreeboardVO> volist = new ArrayList<FreeboardVO>();
 		
-		int nowpage = 1;
-		int limit = LISTCOUNT;
-		
-		if(request.getParameter("nowpage") != null) {
-			nowpage = Integer.parseInt(request.getParameter("nowpage"));
-		}
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
-		int totalarticlelistcnt = dao.getTotalArticleListCount(searchKeyCode, searchKeyWord);
-		volist = dao.getTotalArticleList(nowpage, limit, searchKeyCode, searchKeyWord);
+		FreeboardVO vo = new FreeboardVO();
+		vo.setTitle(request.getParameter("freeBoardVO.title"));
+		vo.setContent(request.getParameter("freeBoardVO.contents"));
+		HttpSession session = request.getSession();
+		String sessionId = (String) session.getAttribute("sessionId");
+		vo.setMember_id(sessionId);
+		String member_name = dao.getLoginNameById(sessionId);
+		vo.setMember_name(request.getParameter(member_name));
 		
-		int totalpage = 0;
+		dao.insertArticle(vo);
 		
-		if(totalarticlelistcnt % limit == 0) {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-		} else {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-			totalpage = totalpage + 1;
-		}
-		
-		request.setAttribute("nowpage", nowpage);
-		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("totalarticlelistcnt", totalarticlelistcnt);
-		request.setAttribute("volist", volist);
+		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
 		

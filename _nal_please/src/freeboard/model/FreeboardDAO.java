@@ -303,15 +303,14 @@ public class FreeboardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "INSERT INTO nal.freeboard(articleno, title, content, member_id, member_name) VALUES(articleno_seq.nextval, ?, ?, ?, ?)";
+		String sql = "UPDATE nal.freeboard SET title = ?, content = ? WHERE articleno = ?";
 		
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContent());
-			pstmt.setString(3, vo.getMember_id());
-			pstmt.setString(4, vo.getMember_name());
+			pstmt.setInt(3, vo.getArticleno());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			System.out.println("getTotalArticleList() 에러 : " + e);

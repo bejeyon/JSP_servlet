@@ -1,8 +1,6 @@
-package freeboard.controller.action;
+package freeboard.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,10 +13,10 @@ import freeboard.model.FreeboardDAO;
 import freeboard.model.FreeboardVO;
 
 /**
- * Servlet implementation class FreeboardRewriteActionServlet
+ * Servlet implementation class FreeboardDeleteActionServlet
  */
-@WebServlet("/freeboardrewriteaction.do")
-public class FreeboardRewriteActionServlet extends HttpServlet {
+@WebServlet("/delFreeboardProc.do")
+public class FreeboardDeleteActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -44,40 +42,19 @@ public class FreeboardRewriteActionServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
-		List<FreeboardVO> volist = new ArrayList<FreeboardVO>();
-		
-		int nowpage = 1;
-		int limit = LISTCOUNT;
-		
-		if(request.getParameter("nowpage") != null) {
-			nowpage = Integer.parseInt(request.getParameter("nowpage"));
-		}
+		int articleno = Integer.parseInt(request.getParameter("articleno"));	
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
-		int totalarticlelistcnt = dao.getTotalArticleListCount(searchKeyCode, searchKeyWord);
-		volist = dao.getTotalArticleList(nowpage, limit, searchKeyCode, searchKeyWord);
+		dao.deleteArticle(articleno);
 		
-		int totalpage = 0;
-		
-		if(totalarticlelistcnt % limit == 0) {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-		} else {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-			totalpage = totalpage + 1;
-		}
-		
-		request.setAttribute("nowpage", nowpage);
-		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("totalarticlelistcnt", totalarticlelistcnt);
-		request.setAttribute("volist", volist);
+		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("searchKeyCode", searchKeyCode);
-		request.setAttribute("searchKeyWord", searchKeyWord);
+		request.setAttribute("searchKeyWord", searchKeyWord);		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeBoardList.do");
 		rd.forward(request, response);
 	}
 

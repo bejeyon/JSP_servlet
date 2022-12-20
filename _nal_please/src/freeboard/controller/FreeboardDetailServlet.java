@@ -17,8 +17,8 @@ import freeboard.model.FreeboardVO;
 /**
  * Servlet implementation class FreeboardViewServlet
  */
-@WebServlet("/freeboardview.do")
-public class FreeboardViewServlet extends HttpServlet {
+@WebServlet("/freeBoardDetail.do")
+public class FreeboardDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -45,19 +45,21 @@ public class FreeboardViewServlet extends HttpServlet {
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
 		int articleno = Integer.parseInt(request.getParameter("articleno"));	
-		int nowpage = Integer.parseInt(request.getParameter("nowpage"));
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
 		FreeboardVO vo = new FreeboardVO();
-		vo = dao.getArticleByArticleno(articleno, nowpage);
+		vo = dao.getArticleByArticleno(articleno, pageIndex);
 		
-		request.setAttribute("nowpage", nowpage);
+		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
+		request.setAttribute("articleno", articleno);
+		request.setAttribute("freeBoardVO", vo);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_detail.jsp");
 		rd.forward(request, response);
 	}
 

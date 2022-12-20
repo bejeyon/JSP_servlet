@@ -10,17 +10,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import freeboard.model.FreeboardDAO;
 import freeboard.model.FreeboardVO;
 
 /**
- * Servlet implementation class FreeboardListServlet
+ * Servlet implementation class FreeboardRewriteActionServlet
  */
-@WebServlet("/freeBoardList.do")
-public class FreeboardListServlet extends HttpServlet {
+@WebServlet("/updateFreeboardProc.do")
+public class FreeboardRewriteActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static final int LISTCOUNT = 10;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,36 +45,19 @@ public class FreeboardListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
-		List<FreeboardVO> volist = new ArrayList<FreeboardVO>();
-		
-		int pageIndex = 1;
-		int limit = LISTCOUNT;
-		
-		if(request.getParameter("pageIndex") != null) {
-			pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-		}
+		int articleno = Integer.parseInt(request.getParameter("articleno"));	
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
 		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
-		int totalarticlelistcnt = dao.getTotalArticleListCount(searchKeyCode, searchKeyWord);
-		volist = dao.getTotalArticleList(pageIndex, limit, searchKeyCode, searchKeyWord);
-		
-		int totalpage = 0;
-		
-		if(totalarticlelistcnt % limit == 0) {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-		} else {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-			totalpage = totalpage + 1;
-		}
+		FreeboardVO vo = new FreeboardVO();
+		vo.setArticleno(articleno);
+		vo.setTitle(request.getParameter("freeBoardVO.title"));
+		vo.setContent(request.getParameter("freeBoardVO.contents"));		
+		dao.updateArticle(vo);
 		
 		request.setAttribute("pageIndex", pageIndex);
-		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("totalarticlelistcnt", totalarticlelistcnt);
-		request.setAttribute("searchFreeBoardVO", volist);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
 		

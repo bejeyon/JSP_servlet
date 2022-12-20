@@ -17,7 +17,7 @@ import freeboard.model.FreeboardVO;
 /**
  * Servlet implementation class FreeboardRewriteformServlet
  */
-@WebServlet("/freeboardrewriteform.do")
+@WebServlet("/freeBoardUpdate.do")
 public class FreeboardRewriteformServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,40 +44,22 @@ public class FreeboardRewriteformServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		FreeboardDAO dao = FreeboardDAO.getInstance();
-		List<FreeboardVO> volist = new ArrayList<FreeboardVO>();
-		
-		int nowpage = 1;
-		int limit = LISTCOUNT;
-		
-		if(request.getParameter("nowpage") != null) {
-			nowpage = Integer.parseInt(request.getParameter("nowpage"));
-		}
-		
+		int articleno = Integer.parseInt(request.getParameter("articleno"));	
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+				
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
-		int totalarticlelistcnt = dao.getTotalArticleListCount(searchKeyCode, searchKeyWord);
-		volist = dao.getTotalArticleList(nowpage, limit, searchKeyCode, searchKeyWord);
+		FreeboardVO vo = new FreeboardVO();
+		vo = dao.getArticleByArticleno(articleno, pageIndex);
 		
-		int totalpage = 0;
-		
-		if(totalarticlelistcnt % limit == 0) {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-		} else {
-			totalpage = totalarticlelistcnt / limit;
-			Math.floor(totalpage);
-			totalpage = totalpage + 1;
-		}
-		
-		request.setAttribute("nowpage", nowpage);
-		request.setAttribute("totalpage", totalpage);
-		request.setAttribute("totalarticlelistcnt", totalarticlelistcnt);
-		request.setAttribute("volist", volist);
+		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
+		request.setAttribute("articleno", articleno);
+		request.setAttribute("freeBoardVO", vo);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_writeform.jsp");
 		rd.forward(request, response);
 	}
 
