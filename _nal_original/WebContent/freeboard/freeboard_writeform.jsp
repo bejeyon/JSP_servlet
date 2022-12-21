@@ -130,6 +130,7 @@
 
 							<div class="table01">
 								<form id="freeBoardVO" name="freeBoardVO">
+									
 									<table>
 										<caption>자유게시판 글쓰기 페이지로 제목과 내용으로 구성</caption>
 										<colgroup>
@@ -159,7 +160,7 @@
 											<td>
 												<span class="box00 t_pull2 m_pull2">
 													<pre><textarea id="contents" name="contents"></textarea></pre>
-													<input id="member_id" name="member_id" type="hidden" value=<%=sessionId%>}>
+													<input id="member_id" name="member_id" type="hidden" value=<%=sessionId%>>
 													<input id="pageIndex" name="pageIndex" type="hidden" value="<%=pageIndex%>">
 												</span>
 											</td>

@@ -1,4 +1,4 @@
-package usermadang.board;
+package usermadang;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class FreeboardWriteformServlet extends HttpServlet {
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_writeform.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/freeboardProc.do");
 		rd.forward(request, response);
 	}
 

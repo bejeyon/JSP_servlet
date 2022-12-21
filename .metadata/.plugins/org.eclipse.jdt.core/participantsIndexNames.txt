@@ -17,6 +17,8 @@ C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4135513135.index
 \_nal_please\src
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3354590676.index
 \MVC2_ORACLE_Shop\src
+C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1302109711.index
+\_2nd_project_nal_board\src
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1837356734.index
 \_nal_copy\scr
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\263990445.index
@@ -25,6 +27,8 @@ C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\268902586.index
 \MVC2_ORACLE_Shop\src
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2789229803.index
 \MVC2_ORACLE_Shop\src
+C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\648706635.index
+\_nal_copy\scr
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3326036634.index
 \_nal_original\src
 C:\4th\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3537426432.index

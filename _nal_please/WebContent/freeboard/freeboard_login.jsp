@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>_nal_please 로그인</title>
 </head>
 <body>
 	<% session.setAttribute("sessionId", "member01");
 	%>
-	<h1 class="title"><a href="http://localhost:8080/_nal_please/usermadang/board/freeBoardList.do">글쓰려고 로그인하기!!</a></h1>
+	<h1 class="title"><a href="http://localhost:8080/_nal_please/freeBoardList.do">글쓰려고 로그인하기!!</a></h1>
 </body>
 </html>

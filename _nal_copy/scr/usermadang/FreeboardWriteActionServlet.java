@@ -1,4 +1,4 @@
-package usermadang.board;
+package usermadang;
 
 import java.io.IOException;
 import java.util.ArrayList;

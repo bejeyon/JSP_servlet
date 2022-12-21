@@ -1,4 +1,4 @@
-package usermadang.board;
+package usermadang;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import usermadang.board.model.FreeboardDAO;
 import usermadang.board.model.FreeboardVO;
 
 /**
- * Servlet implementation class FreeboardViewServlet
+ * Servlet implementation class FreeboardRewriteformServlet
  */
-@WebServlet("/freeBoardDetail.do")
-public class FreeboardDetailServlet extends HttpServlet {
+@WebServlet("/freeBoardUpdate.do")
+public class FreeboardRewriteformServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,7 +46,7 @@ public class FreeboardDetailServlet extends HttpServlet {
 		FreeboardDAO dao = FreeboardDAO.getInstance();
 		int articleno = Integer.parseInt(request.getParameter("articleno"));	
 		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-		
+				
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
@@ -59,7 +59,7 @@ public class FreeboardDetailServlet extends HttpServlet {
 		request.setAttribute("articleno", articleno);
 		request.setAttribute("freeBoardVO", vo);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_detail.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/updateFreeboardProc.do");
 		rd.forward(request, response);
 	}
 

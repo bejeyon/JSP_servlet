@@ -1,4 +1,4 @@
-package usermadang.board;
+package usermadang;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,15 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import usermadang.board.model.FreeboardDAO;
 import usermadang.board.model.FreeboardVO;
 
 /**
- * Servlet implementation class FreeboardRewriteformServlet
+ * Servlet implementation class FreeboardRewriteActionServlet
  */
-@WebServlet("/freeBoardUpdate.do")
-public class FreeboardRewriteformServlet extends HttpServlet {
+@WebServlet("/updateFreeboardProc.do")
+public class FreeboardRewriteActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -46,20 +47,21 @@ public class FreeboardRewriteformServlet extends HttpServlet {
 		FreeboardDAO dao = FreeboardDAO.getInstance();
 		int articleno = Integer.parseInt(request.getParameter("articleno"));	
 		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
-				
+		
 		String searchKeyCode = request.getParameter("searchKeyCode");
 		String searchKeyWord = request.getParameter("searchKeyWord");
 		
 		FreeboardVO vo = new FreeboardVO();
-		vo = dao.getArticleByArticleno(articleno, pageIndex);
+		vo.setArticleno(articleno);
+		vo.setTitle(request.getParameter("freeBoardVO.title"));
+		vo.setContent(request.getParameter("freeBoardVO.contents"));		
+		dao.updateArticle(vo);
 		
 		request.setAttribute("pageIndex", pageIndex);
 		request.setAttribute("searchKeyCode", searchKeyCode);
 		request.setAttribute("searchKeyWord", searchKeyWord);
-		request.setAttribute("articleno", articleno);
-		request.setAttribute("freeBoardVO", vo);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_rewriteform.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./freeboard/freeboard_list.jsp");
 		rd.forward(request, response);
 	}
 

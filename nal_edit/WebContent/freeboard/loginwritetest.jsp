@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>nal_edit 로그인</title>
 </head>
 <body>
 	<% session.setAttribute("sessionId", "member01");

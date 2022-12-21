@@ -37,37 +37,37 @@
 <meta http-equiv="Pragma" content="no-cache" />
 
 <title>이용자마당>게시판>자유게시판</title>
-<link  href="/css/sub.css" rel="stylesheet"/>
+<link  href="../css/sub.css" rel="stylesheet"/>
 <meta name='viewport' content='initial-scale=1, user-scalable=no, initial-scale=1'/>
 
-<link href="/css/jquery-ui.css" rel="stylesheet" />
-<link href="/css/font-awesome.css" rel="stylesheet" />
+<link href="../css/jquery-ui.css" rel="stylesheet" />
+<link href="../css/font-awesome.css" rel="stylesheet" />
 
-<link rel="icon" href="/images/logo/favicon.png" sizes="16x16" />
+<link rel="icon" href="../images/logo/favicon.png" sizes="16x16" />
 
-<link rel="stylesheet" type="text/css" href="/resource/css/new_common.css?v=202212201545">
-<link rel="stylesheet" type="text/css" href="/resource/css/jquery.bxslider.css?v=202212201545">
-<link rel="stylesheet" type="text/css" href="/resource/css/fonts.css?v=202212201545">
+<link rel="stylesheet" type="text/css" href="../resource/css/new_common.css">
+<link rel="stylesheet" type="text/css" href="../resource/css/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="../resource/css/fonts.css">
 
 
 <!--[if lte IE 8]>
-<link href="/css/sub_pc.css" rel="stylesheet"/>
+<link href="../css/sub_pc.css" rel="stylesheet"/>
 <![endif]-->
 
 
-<script type="text/javascript" src="/resource/js/jquery-1.11.2.min.js"></script>
-<!--<script type="text/javascript" src="/js/jquery-ui.min.js"></script>-->
-<script type="text/javascript" src="/js/jquery-migrate-1.2.1.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
-<script type="text/javascript" src="/js/js_rolling.js"></script>
-<script type="text/javascript" src="/js/jExpand.js"></script>
+<script type="text/javascript" src="../resource/js/jquery-1.11.2.min.js"></script>
+<!--<script type="text/javascript" src="../js/jquery-ui.min.js"></script>-->
+<script type="text/javascript" src="../js/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/js_rolling.js"></script>
+<script type="text/javascript" src="../js/jExpand.js"></script>
 
 
-<script type="text/javascript" src="/resource/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="/resource/js/new_common.js"></script>
-<script type="text/javascript" src="/resource/js/menu_control.js"></script>
-<link rel="stylesheet" type="text/css" href="/resource/css/select2.css?v=202212201545"/>
-<script type="text/javascript" src="/resource/js/select2.min.js"></script>
+<script type="text/javascript" src="../resource/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="../resource/js/new_common.js"></script>
+<script type="text/javascript" src="../resource/js/menu_control.js"></script>
+<link rel="stylesheet" type="text/css" href="../resource/css/select2.css"/>
+<script type="text/javascript" src="../resource/js/select2.min.js"></script>
 
 <script type="text/javascript">
 //<![CDATA[        
@@ -120,8 +120,8 @@
         ]
     }
 </script>
-<link rel="stylesheet" type="text/css" href="/resource/css/select2_old.css?v=202212201545"/>
-<script type="text/javascript" src="/resource/js/select2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../resource/css/select2_old.css"/>
+<script type="text/javascript" src="../resource/js/select2.min.js"></script>
 
 
 <div class="skip">
@@ -193,7 +193,7 @@
         
         <div class="bottom">
             <div class="inner">
-                <div class="logo"><h1><a href="/main.do" title="메인페이지로 이동"><img src="/resource/images/logo.png" alt="국회도서관 로고"></a></h1></div>
+                <div class="logo"><h1><a href="/main.do" title="메인페이지로 이동"><img src="../resource/images/logo.png" alt="국회도서관 로고"></a></h1></div>
 
                 <!-- 메뉴 -->
                 <div class="menu" id="menu">
@@ -397,7 +397,7 @@
                     <button type="button" class="btn_search" onclick="totalSearch();">검색</button>
                 </div>
 
-                <div class="menuIcon"><a href="#none"><img src="/resource/images/btn_hambuger.png" alt="전체메뉴"></a></div>
+                <div class="menuIcon"><a href="#none"><img src="../resource/images/btn_hambuger.png" alt="전체메뉴"></a></div>
             </div>
         </div>
     </div>
@@ -415,7 +415,7 @@
 
             <!-- 모바일용 로그인 -->
             <div class="loginList mo">
-                <div class="logo"><h1><a href="/main.do"><img src="/resource/images/logo.png" alt="국회도서관"></a></h1></div>
+                <div class="logo"><h1><a href="/main.do"><img src="../resource/images/logo.png" alt="국회도서관"></a></h1></div>
                 <div class="close"><a href="#">닫기</a></div>
                 <ul>
                     <li><a href="/english/main.do" target="_blank" title="새창열기">ENGLISH</a></li>
@@ -1139,7 +1139,7 @@
 				<h2>이용자마당</h2>
 				<div class="location">
 					<ol>
-						<li class="home"><img src="/resource/images/icon_home.png" alt="홈"/></li>
+						<li class="home"><img src="../resource/images/icon_home.png" alt="홈"/></li>
 						<li>이용자마당</li>
 						<li>게시판</li>
 						<li>자유게시판</li>
@@ -1610,7 +1610,7 @@
 </script>
 
 
-    <script type='text/javascript' src="/js/bs_trk.js"></script>
+    <script type='text/javascript' src="../js/bs_trk.js"></script>
 
 <script type="text/javascript" defer='defer'>/* CLICKZONE SCRIPT V.V.4 *//*X*//* COPYRIGHT 2002-2017 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/
 
@@ -1633,7 +1633,7 @@
         <div class="inner">
             <div class="chatBot">
             <!-- DR 제거 -->
-                <a href="#" id="floating_box" title="새창열림"><img src="/resource/images/img_chatbot.png" alt="챗봇" /></a>
+                <a href="#" id="floating_box" title="새창열림"><img src="../resource/images/img_chatbot.png" alt="챗봇" /></a>
             </div>
             <div class="footerTopBox">
                 <ul class="pvLink">
@@ -1647,16 +1647,16 @@
                 	<div class="snsMl75">
                      
                 		<a href="https://www.youtube.com/c/NALKR" target="_blank" title="YouTube 새창열기" class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="/images/sns/sns_1.png" alt="YouTube" style="width:25px;margin-top: 8px;"/>
+                			<img src="../images/sns/sns_1.png" alt="YouTube" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://www.instagram.com/nal_kr/"  target="_blank" title="Instagram 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="/images/sns/sns_2.png" alt="Instagram" style="width:25px;margin-top: 8px;"/>
+                			<img src="../images/sns/sns_2.png" alt="Instagram" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://www.facebook.com/NationalAssemblyLibraryROK" target="_blank" title="Facebook 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="/images/sns/sns_3.png" alt="Facebook" style="width:25px;margin-top: 8px;"/>
+                			<img src="../images/sns/sns_3.png" alt="Facebook" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://blog.naver.com/nalkr2017" target="_blank" title="블로그 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="/images/sns/sns_4.png" alt="블로그 " style="width:25px;margin-top: 8px;"/>
+                			<img src="../images/sns/sns_4.png" alt="블로그 " style="width:25px;margin-top: 8px;"/>
                 		</a>
                                     		
                 	</div>
@@ -1700,16 +1700,16 @@
                     
                         <a href="https://ccl.cckorea.org" target="_blank" title="새창열림">
                     
-                            <img src="/resource/images/img/logoSite01.png" alt="creativecommons">
+                            <img src="../resource/images/img/logoSite01.png" alt="creativecommons">
                         </a>
                     
                         <a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창열림">
                     
-                            <img src="/resource/images/img/logoSite02.png" alt="과학기술정보통신부 WA WEB접근성(웹 접근성 품질인증 마크) (사)한국시각장애인연합회 2021.12.28~2022.12.27" title="과학기술정보통신부 WA WEB접근성 (사)한국시각장애인연합회 2021.12.28~2022.12.27" />
+                            <img src="../resource/images/img/logoSite02.png" alt="과학기술정보통신부 WA WEB접근성(웹 접근성 품질인증 마크) (사)한국시각장애인연합회 2021.12.28~2022.12.27" title="과학기술정보통신부 WA WEB접근성 (사)한국시각장애인연합회 2021.12.28~2022.12.27" />
                         </a>
 
                     <a href="#" onclick="footerLink('12');" title="새창열림">
-                        <img src="/resource/images/img/logoSite04.png" alt="107 손말이음센터 연중무휴 국번없이 107 청각,언어장애인 의사소통 지원">
+                        <img src="../resource/images/img/logoSite04.png" alt="107 손말이음센터 연중무휴 국번없이 107 청각,언어장애인 의사소통 지원">
                     </a>
                 </div>
             </div>
