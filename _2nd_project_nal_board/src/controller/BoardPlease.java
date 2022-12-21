@@ -49,7 +49,7 @@ public class BoardPlease extends HttpServlet {
 	public void requestBoardUpdate(HttpServletRequest request){
 		
 		int articleno = Integer.parseInt(request.getParameter("articleno"));
-		int pagenum = Integer.parseInt(request.getParameter("pagenum"));	
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));	
 		
 		BoardDAO dao = BoardDAO.getInstance();		
 		
@@ -57,7 +57,7 @@ public class BoardPlease extends HttpServlet {
 		board.setArticleno(articleno);
 //		board.setMember_name(request.getParameter("name"));
 		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));		
+		board.setContent(request.getParameter("contents"));		
 		
 //		 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy/MM/dd(HH:mm:ss)");
 //		 String writedate = formatter.format(new java.util.Date()); 

@@ -1,7 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    isELIgnored="false"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*"%>
+<%@ page import="usermadang.board.model.FreeboardVO"%>
+<%@ page import="usermadang.board.model.FreeboardDAO"%>
 
-
+<%
+	String sessionId = (String) session.getAttribute("sessionId");
+	List searchFreeBoardVO = (List) request.getAttribute("searchFreeBoardVO");
+	int total_record = ((Integer) request.getAttribute("total_record")).intValue();
+	int pageIndex = ((Integer) request.getAttribute("pageIndex")).intValue();
+	int total_page = ((Integer) request.getAttribute("total_page")).intValue();
+// 	//	String RequestURI = request.getRequestURI();
+	String searchKeyCode = (String) request.getAttribute("searchKeyCode");
+	String searchKeyWord = (String) request.getAttribute("searchKeyWord");
+	
+	FreeboardDAO dao = FreeboardDAO.getInstance();
+	String member_name = dao.getLoginNameById(sessionId);
+%>
 
 
 
@@ -37,37 +55,37 @@
 <meta http-equiv="Pragma" content="no-cache" />
 
 <title>이용자마당>게시판>자유게시판</title>
-<link  href="../css/sub.css" rel="stylesheet"/>
+<link  href="${pageContext.request.contextPath}/css/sub.css" rel="stylesheet"/>
 <meta name='viewport' content='initial-scale=1, user-scalable=no, initial-scale=1'/>
 
-<link href="../css/jquery-ui.css" rel="stylesheet" />
-<link href="../css/font-awesome.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/jquery-ui.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet" />
 
-<link rel="icon" href="../images/logo/favicon.png" sizes="16x16" />
+<link rel="icon" href="${pageContext.request.contextPath}/images/logo/favicon.png" sizes="16x16" />
 
-<link rel="stylesheet" type="text/css" href="../resource/css/new_common.css">
-<link rel="stylesheet" type="text/css" href="../resource/css/jquery.bxslider.css">
-<link rel="stylesheet" type="text/css" href="../resource/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/new_common.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/fonts.css">
 
 
 <!--[if lte IE 8]>
-<link href="../css/sub_pc.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/css/sub_pc.css" rel="stylesheet"/>
 <![endif]-->
 
 
-<script type="text/javascript" src="../resource/js/jquery-1.11.2.min.js"></script>
-<!--<script type="text/javascript" src="../js/jquery-ui.min.js"></script>-->
-<script type="text/javascript" src="../js/jquery-migrate-1.2.1.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/js_rolling.js"></script>
-<script type="text/javascript" src="../js/jExpand.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-1.11.2.min.js"></script>
+<!--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-migrate-1.2.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/js_rolling.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jExpand.js"></script>
 
 
-<script type="text/javascript" src="../resource/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="../resource/js/new_common.js"></script>
-<script type="text/javascript" src="../resource/js/menu_control.js"></script>
-<link rel="stylesheet" type="text/css" href="../resource/css/select2.css"/>
-<script type="text/javascript" src="../resource/js/select2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/new_common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/menu_control.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/select2.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/select2.min.js"></script>
 
 <script type="text/javascript">
 //<![CDATA[        
@@ -120,8 +138,8 @@
         ]
     }
 </script>
-<link rel="stylesheet" type="text/css" href="../resource/css/select2_old.css"/>
-<script type="text/javascript" src="../resource/js/select2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/select2_old.css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/select2.min.js"></script>
 
 
 <div class="skip">
@@ -161,7 +179,7 @@
                             
 
                                 
-                                    <li class="new user"><b>배재연</b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
+                                    <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
                                 
                                 <!-- 20181128 추가 직원 -->
                                 
@@ -193,7 +211,7 @@
         
         <div class="bottom">
             <div class="inner">
-                <div class="logo"><h1><a href="/main.do" title="메인페이지로 이동"><img src="../resource/images/logo.png" alt="국회도서관 로고"></a></h1></div>
+                <div class="logo"><h1><a href="/main.do" title="메인페이지로 이동"><img src="${pageContext.request.contextPath}/resource/images/logo.png" alt="국회도서관 로고"></a></h1></div>
 
                 <!-- 메뉴 -->
                 <div class="menu" id="menu">
@@ -397,7 +415,7 @@
                     <button type="button" class="btn_search" onclick="totalSearch();">검색</button>
                 </div>
 
-                <div class="menuIcon"><a href="#none"><img src="../resource/images/btn_hambuger.png" alt="전체메뉴"></a></div>
+                <div class="menuIcon"><a href="#none"><img src="${pageContext.request.contextPath}/resource/images/btn_hambuger.png" alt="전체메뉴"></a></div>
             </div>
         </div>
     </div>
@@ -415,7 +433,7 @@
 
             <!-- 모바일용 로그인 -->
             <div class="loginList mo">
-                <div class="logo"><h1><a href="/main.do"><img src="../resource/images/logo.png" alt="국회도서관"></a></h1></div>
+                <div class="logo"><h1><a href="/main.do"><img src="${pageContext.request.contextPath}/resource/images/logo.png" alt="국회도서관"></a></h1></div>
                 <div class="close"><a href="#">닫기</a></div>
                 <ul>
                     <li><a href="/english/main.do" target="_blank" title="새창열기">ENGLISH</a></li>
@@ -429,9 +447,10 @@
                 </ul>
                 <!-- <div class="userForm"><b>홍길동</b>님 안녕하세요!</div> --> <!-- 로그인 시, 노출 -->
 
-                
-                    <div class="userForm"><b>배재연</b>님 안녕하세요!</div> <!-- 로그인 시, 노출 -->
-                
+<%-- 				<c:set var="member_name" value="<%=member_name%>"></c:set> --%>
+<%--                 <c:when test="${!(member_name==null||member_name=='')}"> --%>
+                    <div class="userForm"><b><%=member_name%></b>님 안녕하세요!</div> <!-- 로그인 시, 노출 -->
+<%--                 </c:when> --%>
 
                 <div class="logButton">
                     
@@ -1053,7 +1072,7 @@
 	*/
     function fn_egov_link_page(pageNo){
     	$("#pageIndex").attr("value", pageNo);  
-    	$("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardList.do").submit();
+    	$("#searchFreeBoardVO").attr("action", "./freeBoardList.do").submit();
     };
     
     /*
@@ -1061,17 +1080,42 @@
     */
     function search(){
     	
-    	var keyCode = $("#searchKeyCode").val();
-    	var keyword = $("#searchKeyword").val();
+//     	var keyCode = $("#searchKeyCode").val();
+//     	var keyword = $("#searchKeyword").val();
 
-    	if(keyword != '' && keyCode == ''){
+//     	if(keyword != '' && keyCode == ''){
     		
-    		alert("검색항목을 선택하세요!");
+//     		alert("검색항목을 선택하세요!");
     		
-    	}else{
-    		$("#pageIndex").attr("value",'1'); 
-        	$("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardList.do").submit();
-    	}
+//     	}else{
+//     		$("#pageIndex").attr("value",'1'); 
+//         	$("#searchFreeBoardVO").attr("action", "./freeBoardList.do").submit();
+//     	}
+
+    	if( searchform.text.value == "" ) {
+			searchform.text.focus();
+  	        alert("검색어를 입력해 주십시오.");
+  	        return false;	  	        
+  	    }
+		
+		var searchKeyCode = document.querySelector("#searchKeyCode");
+		searchKeyCode.setAttribute("searchKeyCode", searchKeyCode);
+		var searchKeyword = document.querySelector("#searchKeyword");
+		searchKeyword.setAttribute("searchKeyword", searchKeyword);
+		
+		var uri = "./freeBoardList.do?";
+		
+		uri += "searchKeyCode";
+		uri += "=";
+		uri += encodeURIComponent(searchKeyCode.value);
+		uri += "&";
+		uri += "searchKeyword";
+		uri += "=";
+		uri += encodeURIComponent(searchKeyword.value);
+		
+//			location.href = './BoardListAction.do?searchKeyCode=searchKeyCode&searchKeyWord=searchKeyWord'
+//			location.href = "./BoardListAction.do?items=" + ${param.items} + "&text=" + ${param.text};
+		location.href = uri
     }
     
     
@@ -1080,26 +1124,37 @@
     */
     function createFreeboard(){
     	
-    	var seq = $("#userSeq").val();
-    	var ccd = 'P';
+    	if (${sessionId==null}) {
+			alert("로그인 해주세요.");
+			return false;
+		}
+		
+		if (<%=request.getParameter("searchKeyCode")%>!=null) {
+			location.href = "./freeBoardForm.do?sessionId=<%=sessionId%>&pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}"
+		} else {
+			location.href = "./freeBoardForm.do?sessionId=<%=sessionId%>&pageIndex=<%=pageIndex%>"
+		}
     	
-    	if(ccd == "E"){
-    		alert('직원인 경우 자유게시판 글쓰기는 사용 하실수 없습니다.');
-    	}else{
+//     	var seq = $("#userSeq").val();
+//     	var ccd = 'P';
+    	
+//     	if(ccd == "E"){
+//     		alert('직원인 경우 자유게시판 글쓰기는 사용 하실수 없습니다.');
+//     	}else{
     		
-	    	if(seq == ''){
-	    		alert('자유게시판 글쓰기는 로그인후 사용할수 있습니다.');
-// 	    		$('#parentUrl').val('freeBoard');
-	    		$("#freeFrm").attr("action", "/loginForm.do").submit();
-	    	}else{
-	     		if(ccd == "D"){
-	         		alert('자유게시판 글쓰기는 My page에서 실명인증 후 사용할수 있습니다.');
-	     		}else{
-	    			$("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardForm.do").submit();
-	     		}
-	    	}
+// 	    	if(seq == ''){
+// 	    		alert('자유게시판 글쓰기는 로그인후 사용할수 있습니다.');
+// // 	    		$('#parentUrl').val('freeBoard');
+// 	    		$("#freeFrm").attr("action", "/loginForm.do").submit();
+// 	    	}else{
+// 	     		if(ccd == "D"){
+// 	         		alert('자유게시판 글쓰기는 My page에서 실명인증 후 사용할수 있습니다.');
+// 	     		}else{
+// 	    			$("#searchFreeBoardVO").attr("action", "./freeBoardForm.do").submit();
+// 	     		}
+// 	    	}
     	
-    	}
+//     	}
     	
     }
     
@@ -1109,7 +1164,7 @@
    function freeBoardDetail(seq,orderno){
 	   $("#searchSeq").val(seq);
 	   $("#searchOrderNo").val(orderno);
-	   $("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardDetail.do").submit();
+	   $("#searchFreeBoardVO").attr("action", "./freeBoardDetail.do").submit();
    }
    
    /*
@@ -1118,7 +1173,7 @@
    function freeBoardAnswer(seq,orderno){
 	   $("#searchSeq").val(seq);
 	   $("#searchOrderNo").val(orderno);
-	   $("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardAnswer.do").submit();
+	   $("#searchFreeBoardVO").attr("action", "./freeBoardAnswer.do").submit();
    }
 
 </script>
@@ -1126,7 +1181,7 @@
 	<input type="hidden" name="retURL" id="retURL" value="freeBoard" />
 </form>
 
-<form id="searchFreeBoardVO" action="/usermadang/board/freeBoardList.do" method="post">
+<form id="searchFreeBoardVO" action="./freeBoardList.do" method="post">
 	<input id="userSeq" name="userSeq" type="hidden" value=""/>
 	<input id="parentUrl" name="parentUrl" type="hidden" value=""/>
 	<input id="searchSeq" name="searchSeq" type="hidden" value=""/>
@@ -1139,7 +1194,7 @@
 				<h2>이용자마당</h2>
 				<div class="location">
 					<ol>
-						<li class="home"><img src="../resource/images/icon_home.png" alt="홈"/></li>
+						<li class="home"><img src="${pageContext.request.contextPath}/resource/images/icon_home.png" alt="홈"/></li>
 						<li>이용자마당</li>
 						<li>게시판</li>
 						<li>자유게시판</li>
@@ -1168,22 +1223,26 @@
 							</div>
 							<div class="conBottomBox conBottomBox2">
 								<div class="outputTxt">
-									<div class="leftTxt">총 1,365건</div>
+									<div class="leftTxt">총 <%=total_record%>건</div>
 									<div class="rightAlign all">
-                   			<span class="left01 left01_32">
-								<select id="searchKeyCode" name="searchKeyCode" title="검색항목">
-									<option value="00" >전체</option>
-									<option value="01" >제목</option>
-									<option value="02" >제목+내용</option>
-									<option value="03" >작성자</option>
-								</select>
-							</span>
+			                   			<span class="left01 left01_32">
+											<select id="searchKeyCode" name="searchKeyCode" title="검색항목">
+			
+												<option value="title" >제목</option>
+												<option value="content" >내용</option>
+												<option value="member_name" >작성자</option>
+											</select>
+										</span>
 										<span class="left02 left02_49 left01_w215">
-                            	<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" onkeydown="javascript:if(event.keyCode == 13) search();" type="text" value=""/>
-                            </span>
+			                            	<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text"/>
+			                            </span>
 										<span class="left03 left03_01">
-                           		<span class="btn"><a href="javascript:search();">검색</a></span>
-                           	</span>
+			                           		<span class="btn">
+			                           			<input type="submit" value="검색">
+<!-- 				                           		<a href="javascript:search();">검색</a> -->
+			                           		
+			                           		</span>
+			                           	</span>
 									</div>
 								</div>
 								<div class="tableCon hAuto conShow57">
@@ -1209,313 +1268,32 @@
 											
 												
 													
-													<tr>
-														<td class="cT01">1365</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4343','2')">수고하십니다</a>
-																
-																
-															
-														</td>
-														<td class="cT03">배재연</td>
-														<td class="cT04">
-																2022-12-20
-														</td>
-														<td class="cT05">10</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1364</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4325','3')">수고</a>
-																
-																
-															
-														</td>
-														<td class="cT03">이기쁨</td>
-														<td class="cT04">
-																2022-12-12
-														</td>
-														<td class="cT05">55</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1363</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4303','6')">웹사이트의 메뉴 에러와 불편한 점 등</a>
-																
-																
-															
-														</td>
-														<td class="cT03">고승연</td>
-														<td class="cT04">
-																2022-12-08
-														</td>
-														<td class="cT05">57</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1362</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4283','7')">국민 제안을 드립니다.</a>
-																
-																
-															
-														</td>
-														<td class="cT03">민승재</td>
-														<td class="cT04">
-																2022-11-29
-														</td>
-														<td class="cT05">81</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1361</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4282','8')">비치도서 신청등록합니다</a>
-																
-																
-															
-														</td>
-														<td class="cT03">박춘우</td>
-														<td class="cT04">
-																2022-11-24
-														</td>
-														<td class="cT05">65</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1360</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4262','9')">식당 샐러드 겨자드레싱</a>
-																
-																
-															
-														</td>
-														<td class="cT03">고혜원</td>
-														<td class="cT04">
-																2022-11-17
-														</td>
-														<td class="cT05">160</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1359</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4222','11')">사진등록</a>
-																
-																
-															
-														</td>
-														<td class="cT03">박희준</td>
-														<td class="cT04">
-																2022-11-12
-														</td>
-														<td class="cT05">98</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1358</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4142','14')">부산 협정기관 리스트 보기 오류입니다</a>
-																
-																
-															
-														</td>
-														<td class="cT03">정민호</td>
-														<td class="cT04">
-																2022-10-20
-														</td>
-														<td class="cT05">88</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1357</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4123','15')">우편번호 서비스가 오류가 납니다.</a>
-																
-																
-															
-														</td>
-														<td class="cT03">안선덕</td>
-														<td class="cT04">
-																2022-10-16
-														</td>
-														<td class="cT05">52</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
-
-												
-													
-													<tr>
-														<td class="cT01">1356</td>
-														<td class="tableTitle cT02">
-															
-															
-															
-															
-															
-																
-																	<a href="javascript:freeBoardDetail('4062','18')">멀티미디어 자료 검색</a>
-																
-																
-															
-														</td>
-														<td class="cT03">강승묵</td>
-														<td class="cT04">
-																2022-09-17
-														</td>
-														<td class="cT05">102</td>
-													</tr>
-													
-													
-														
-													
-
-													<!-- //예전 댓글 표시 시작-->
-													
-													<!-- //예전 댓글 표시 끝-->
+													<c:choose>
+														<c:when test="${searchFreeBoardVO==null}">
+															<tr>
+																<td>등록된 글이 없습니다.</td>
+															</tr>
+														</c:when>
+														<c:when test="${searchFreeBoardVO!=null}">
+															<c:forEach var="list" items="${searchFreeBoardVO}">
+																<tr>
+																	<td class="tableTitle cT02">${list.articleno}</td>
+																	<c:choose>
+																		<c:when test="${param.searchKeyWord==null}">
+																			<td class="tableTitle cT02"><a href="./freeBoardDetail.do?articleno=${list.articleno}&pageIndex=<%=pageIndex%>">${list.title}</a></td>
+																		</c:when>
+																		<c:otherwise>
+																			<td class="tableTitle cT02"><a href="./freeBoardDetail.do?articleno=${list.articleno}&pageIndex=<%=pageIndex%>&items=${param.items}&text=${param.text}">${list.title}</a></td>
+											
+																		</c:otherwise>
+																	</c:choose>
+																	<td class="cT03">${list.member_name}</td>
+																	<td class="cT04">${list.writedate}</td>
+																	<td class="cT05">${list.hit}</td>
+																</tr>										
+															</c:forEach>
+														</c:when>
+													</c:choose>
 
 												
 											
@@ -1523,15 +1301,79 @@
 										
 									</table>
 								</div>
-								<div class="paging">
-									<ul>
-										<li class=first><a href="#" onclick="fn_egov_link_page(1); return false;"><img src=/images/img/btnFirst.png style=border:0; alt=처음으로 /></a></li><li class=pre><a href="#" onclick="fn_egov_link_page(1); return false;"><img src=/images/img/btnPre.png style=border:0; alt=이전으로 /></a></li><li class=active><a href="#">1</a></li><li><a href="#" onclick="fn_egov_link_page(2); return false;">2</a></li><li><a href="#" onclick="fn_egov_link_page(3); return false;">3</a></li><li><a href="#" onclick="fn_egov_link_page(4); return false;">4</a></li><li><a href="#" onclick="fn_egov_link_page(5); return false;">5</a></li><li><a href="#" onclick="fn_egov_link_page(6); return false;">6</a></li><li><a href="#" onclick="fn_egov_link_page(7); return false;">7</a></li><li><a href="#" onclick="fn_egov_link_page(8); return false;">8</a></li><li><a href="#" onclick="fn_egov_link_page(9); return false;">9</a></li><li><a href="#" onclick="fn_egov_link_page(10); return false;">10</a></li><li class=next><a href="#" onclick="fn_egov_link_page(11); return false;"><img src=/images/img/btnNext.png style=border:0; alt=다음으로 /></a></li><li class=end><a href="#" onclick="fn_egov_link_page(137); return false;"><img src=/images/img/btnLast.png style=border:0; alt=마지막으로 /></a></li>
+								
+							<div class="paging">
+								
+                                <c:set var="pageIndex" value="<%=pageIndex%>" />
+           
+                                	<c:if test="${param.searchKeyWord==null}">
+                                	<ul>
+										<c:if test="${pageIndex!=1}">
+											<li class=first><a href="<c:url value="./freeBoardList.do?pageIndex=1" /> "><img src="${pageContext.request.contextPath}/images/img/btnFirst.png" style=border:0; alt=처음으로 /></a></li>
+											<li class=pre><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex - 1}" /> "><img src="${pageContext.request.contextPath}/images/img/btnPre.png" style=border:0; alt=이전으로 /></a></li>
+										</c:if>
+										
+										<c:forEach var="i" begin="<%=pageIndex > 6 ? pageIndex - 5 : 1 %>" end="<%=(pageIndex > 6 ? pageIndex + 5 : 11) > total_page ? total_page : (pageIndex > 6 ? pageIndex + 5 : 11)%>">
+											
+											<c:choose>
+												<c:when test="${pageIndex==i}">
+													<li class=active><a href="<c:url value="./freeBoardList.do?pageIndex=${i}" /> "><font color='4C5317'><b> [${i}]</b></font></a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="<c:url value="./freeBoardList.do?pageIndex=${i}" /> "><font color='4C5317'> [${i}]</font></a></li>
+					
+												</c:otherwise>
+											</c:choose>
 
+										</c:forEach>
+										<c:if test="${pageIndex!=total_page}">
+											<li class=next><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex + 1}" /> "><img src="${pageContext.request.contextPath}/images/img/btnNext.png" style=border:0; alt=다음으로 /></a></li>
+											<li class=end><a href="<c:url value="./freeBoardList.do?pageIndex=${total_page}" /> "><img src="${pageContext.request.contextPath}/images/img/btnLast.png" style=border:0; alt=마지막으로 /></a></li>
+										</c:if>
 									</ul>
-									<input id="pageIndex" name="pageIndex" type="hidden" value="1"/>
+									</c:if>                     
+                                
+                                	<c:if test="${param.searchKeyWord!=null}">
+                                	<ul>
+										<c:if test="${pageIndex!=1}">
+											<li class=first><a href="<c:url value="./freeBoardList.do?pageIndex=1&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnFirst.png" style=border:0; alt=처음으로 /></a></li>
+											<li class=pre><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex - 1}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnPre.png" style=border:0; alt=이전으로 /></a></li>
+										</c:if>
+										
+										<c:forEach var="i" begin="<%=pageIndex > 6 ? pageIndex - 5 : 1 %>" end="<%=(pageIndex > 6 ? pageIndex + 5 : 11) > total_page ? total_page : (pageIndex > 6 ? pageIndex + 5 : 11)%>">
+											<a href="<c:url value="./freeBoardList.do?pageIndex=${i}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> ">
+												<c:choose>
+													<c:when test="${pageIndex==i}">
+														<li class=active><font color='4C5317'><b> [${i}]</b></font></li>
+													</c:when>
+													<c:otherwise>
+														<li><font color='4C5317'> [${i}]</font></li>
+						
+													</c:otherwise>
+												</c:choose>
+											</a>
+										</c:forEach>
+										<c:if test="${pageIndex!=total_page}">
+											<li class=next><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex + 1}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnNext.png" style=border:0; alt=다음으로 /></a></li>
+											<li class=end><a href="<c:url value="./freeBoardList.do?pageIndex=${total_page}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnLast.png" style=border:0; alt=마지막으로 /></a></li>
+										</c:if>
+									</ul>
+									</c:if>
+									
+                                <input id="pageIndex" name="pageIndex" type="hidden" value="1">
 
-									<div class="btn"><a href="javascript:createFreeboard();">글쓰기</a></div>
-								</div>
+                                <div class="btn"><a href="javascript:createFreeboard();">글쓰기</a></div>
+                            </div>
+								
+<!-- 								<div class="paging"> -->
+<!-- 									<ul> -->
+<!-- 										<li class=first><a href="#" onclick="fn_egov_link_page(1); return false;"><img src=/images/img/btnFirst.png style=border:0; alt=처음으로 /></a></li><li class=pre><a href="#" onclick="fn_egov_link_page(1); return false;"><img src=/images/img/btnPre.png style=border:0; alt=이전으로 /></a></li><li class=active><a href="#">1</a></li><li><a href="#" onclick="fn_egov_link_page(2); return false;">2</a></li><li><a href="#" onclick="fn_egov_link_page(3); return false;">3</a></li><li><a href="#" onclick="fn_egov_link_page(4); return false;">4</a></li><li><a href="#" onclick="fn_egov_link_page(5); return false;">5</a></li><li><a href="#" onclick="fn_egov_link_page(6); return false;">6</a></li><li><a href="#" onclick="fn_egov_link_page(7); return false;">7</a></li><li><a href="#" onclick="fn_egov_link_page(8); return false;">8</a></li><li><a href="#" onclick="fn_egov_link_page(9); return false;">9</a></li><li><a href="#" onclick="fn_egov_link_page(10); return false;">10</a></li><li class=next><a href="#" onclick="fn_egov_link_page(11); return false;"><img src=/images/img/btnNext.png style=border:0; alt=다음으로 /></a></li><li class=end><a href="#" onclick="fn_egov_link_page(137); return false;"><img src=/images/img/btnLast.png style=border:0; alt=마지막으로 /></a></li> -->
+
+<!-- 									</ul> -->
+<!-- 									<input id="pageIndex" name="pageIndex" type="hidden" value="1"/> -->
+
+<!-- 									<div class="btn"><a href="javascript:createFreeboard();">글쓰기</a></div> -->
+<!-- 								</div> -->
 							</div>
 						</div>
 						<div class="bodyBox02">
@@ -1610,7 +1452,7 @@
 </script>
 
 
-    <script type='text/javascript' src="../js/bs_trk.js"></script>
+    <script type='text/javascript' src="${pageContext.request.contextPath}/js/bs_trk.js"></script>
 
 <script type="text/javascript" defer='defer'>/* CLICKZONE SCRIPT V.V.4 *//*X*//* COPYRIGHT 2002-2017 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/
 
@@ -1633,7 +1475,7 @@
         <div class="inner">
             <div class="chatBot">
             <!-- DR 제거 -->
-                <a href="#" id="floating_box" title="새창열림"><img src="../resource/images/img_chatbot.png" alt="챗봇" /></a>
+                <a href="#" id="floating_box" title="새창열림"><img src="${pageContext.request.contextPath}/resource/images/img_chatbot.png" alt="챗봇" /></a>
             </div>
             <div class="footerTopBox">
                 <ul class="pvLink">
@@ -1647,16 +1489,16 @@
                 	<div class="snsMl75">
                      
                 		<a href="https://www.youtube.com/c/NALKR" target="_blank" title="YouTube 새창열기" class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="../images/sns/sns_1.png" alt="YouTube" style="width:25px;margin-top: 8px;"/>
+                			<img src="${pageContext.request.contextPath}/images/sns/sns_1.png" alt="YouTube" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://www.instagram.com/nal_kr/"  target="_blank" title="Instagram 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="../images/sns/sns_2.png" alt="Instagram" style="width:25px;margin-top: 8px;"/>
+                			<img src="${pageContext.request.contextPath}/images/sns/sns_2.png" alt="Instagram" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://www.facebook.com/NationalAssemblyLibraryROK" target="_blank" title="Facebook 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="../images/sns/sns_3.png" alt="Facebook" style="width:25px;margin-top: 8px;"/>
+                			<img src="${pageContext.request.contextPath}/images/sns/sns_3.png" alt="Facebook" style="width:25px;margin-top: 8px;"/>
                 		</a>
                 		<a href="https://blog.naver.com/nalkr2017" target="_blank" title="블로그 새창열기"  class="snsBt10" style="background-color:#ffffff;width: 25px;margin-right:10px;">
-                			<img src="../images/sns/sns_4.png" alt="블로그 " style="width:25px;margin-top: 8px;"/>
+                			<img src="${pageContext.request.contextPath}/images/sns/sns_4.png" alt="블로그 " style="width:25px;margin-top: 8px;"/>
                 		</a>
                                     		
                 	</div>
@@ -1700,16 +1542,16 @@
                     
                         <a href="https://ccl.cckorea.org" target="_blank" title="새창열림">
                     
-                            <img src="../resource/images/img/logoSite01.png" alt="creativecommons">
+                            <img src="${pageContext.request.contextPath}/resource/images/img/logoSite01.png" alt="creativecommons">
                         </a>
                     
                         <a href="http://www.webwatch.or.kr/Situation/WA_Situation.html?MenuCD=110" target="_blank" title="새창열림">
                     
-                            <img src="../resource/images/img/logoSite02.png" alt="과학기술정보통신부 WA WEB접근성(웹 접근성 품질인증 마크) (사)한국시각장애인연합회 2021.12.28~2022.12.27" title="과학기술정보통신부 WA WEB접근성 (사)한국시각장애인연합회 2021.12.28~2022.12.27" />
+                            <img src="${pageContext.request.contextPath}/resource/images/img/logoSite02.png" alt="과학기술정보통신부 WA WEB접근성(웹 접근성 품질인증 마크) (사)한국시각장애인연합회 2021.12.28~2022.12.27" title="과학기술정보통신부 WA WEB접근성 (사)한국시각장애인연합회 2021.12.28~2022.12.27" />
                         </a>
 
                     <a href="#" onclick="footerLink('12');" title="새창열림">
-                        <img src="../resource/images/img/logoSite04.png" alt="107 손말이음센터 연중무휴 국번없이 107 청각,언어장애인 의사소통 지원">
+                        <img src="${pageContext.request.contextPath}/resource/images/img/logoSite04.png" alt="107 손말이음센터 연중무휴 국번없이 107 청각,언어장애인 의사소통 지원">
                     </a>
                 </div>
             </div>
