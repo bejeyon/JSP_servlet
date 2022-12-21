@@ -29,12 +29,12 @@ public class FreeboardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = null;
+		String sql = "";
 		
-		if(searchKeyCode != null && searchKeyWord != null) {
-			sql = "SELECT COUNT(*) FROM nal.freeboard where deletion = 0 ";
+		if(searchKeyCode == null && searchKeyWord == null) {
+			sql = "SELECT COUNT(*) FROM nal.freeboard WHERE deletion = 0 ";
 		} else {
-			sql = "SELECT COUNT(*) FROM nal.freeboard where (" + searchKeyCode + " like '%" + searchKeyWord + "%') AND (deletion = 0) ";
+			sql = "SELECT COUNT(*) FROM nal.freeboard WHERE (" + searchKeyCode + " like '%" + searchKeyWord + "%') AND (deletion = 0) ";
 		}
 		
 		try {
@@ -46,7 +46,7 @@ public class FreeboardDAO {
 				totalarticlelistcnt = rs.getInt(1);
 			}
 		} catch(Exception e) {
-			System.out.println("getFreeboardListCount() 에러 : " + e);
+			System.out.println("getTotalArticleListCount() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -67,22 +67,22 @@ public class FreeboardDAO {
 	}
 	
 	public ArrayList<FreeboardVO> getTotalArticleList(int nowpage, int limit, String searchKeyCode, String searchKeyWord) {
-		ArrayList<FreeboardVO> volist = null;
+		ArrayList<FreeboardVO> volist = new ArrayList<FreeboardVO>();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql;
+		String sql = "";
 		
 		int totalarticlelistcnt = getTotalArticleListCount(searchKeyCode, searchKeyWord);
 		int startpage_articleno = (nowpage - 1) * limit;
 		int index = startpage_articleno + 1;
 		
-		if(searchKeyCode != null && searchKeyWord != null) {
-			sql = "SELECT COUNT(*) FROM nal.freeboard where deletion = 0 ORDER BY articleno DESC ";
+		if(searchKeyCode == null && searchKeyWord == null) {
+			sql = "SELECT * FROM nal.freeboard WHERE deletion = 0 ORDER BY articleno DESC ";
 		} else {
-			sql = "SELECT COUNT(*) FROM nal.freeboard where (" + searchKeyCode + " like '%" + searchKeyWord + "%') AND (deletion = 0) ORDER BY articleno DESC ";
+			sql = "SELECT * FROM nal.freeboard WHERE (" + searchKeyCode + " like '%" + searchKeyWord + "%') AND (deletion = 0) ORDER BY articleno DESC ";
 		}
 		
 		try {
