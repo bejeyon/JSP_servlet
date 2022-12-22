@@ -277,7 +277,7 @@ public class FreeboardDAO {
 			pstmt.setString(1, vo.getTitle());
 			pstmt.setString(2, vo.getContent());
 			pstmt.setString(3, vo.getMember_id());
-			pstmt.setString(4, vo.getMember_name());
+			pstmt.setString(4, getLoginNameById(vo.getMember_id()));
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			System.out.println("getTotalArticleList() 에러 : " + e);

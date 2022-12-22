@@ -1054,7 +1054,7 @@
 	function isValid(){
 		
 	 	var title = $("#title").val();
-	 	var content = $("#content").val();
+	 	var contents = $("#contents").val();
 	 
 	 	if(title == ""){
 	 		alert("제목을 입력하세요.");
@@ -1062,9 +1062,9 @@
     		return false;
 	 	}
     	
-    	if (content == "") {
+    	if (contents == "") {
     		alert("내용을 입력하세요.");
-			$("#content").focus();
+			$("#contents").focus();
     		return false;
     	}
     	
@@ -1087,8 +1087,8 @@
   	        return false;	  	        
   	    }
   		
-  		if( freeBoardVO.content.value == "" ) {
-  			freeBoardVO.content.focus();
+  		if( freeBoardVO.contents.value == "" ) {
+  			freeBoardVO.contents.focus();
   	        alert("내용을 입력해 주십시오.");
   	        return false;	  	        
   	    }
@@ -1190,11 +1190,11 @@
 									<tr>
 										<th scope="row">
 											<span class="star m_pL0 m_lh38">*</span>
-											<label class="bodyTxt fl lh38 m_pl0 t_lh38" for="content">내용</label>
+											<label class="bodyTxt fl lh38 m_pl0 t_lh38" for="contents">내용</label>
 										</th>
 										<td>
 											<span class="box00 t_pull2 m_pull2">
-												<pre><textarea id="content" name="content"></textarea></pre>
+												<pre><textarea id="contents" name="contents"></textarea></pre>
 												<input id="member_id" name="member_id" type="hidden" value="<%=sessionId%>">
 											</span>
 										</td>
