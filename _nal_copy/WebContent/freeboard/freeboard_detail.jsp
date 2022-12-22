@@ -1937,7 +1937,7 @@
 	function reList(){
 		
 		if (<%=request.getParameter("searchKeyWord")%>!=null) {
-			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}"
+			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>&searchKeyCode=<%=request.getParameter("searchKeyCode")%>&searchKeyWord=<%=request.getParameter("searchKeyWord")%>"
 		} else {
 			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>"
 		}
@@ -2148,7 +2148,16 @@
 								
 
 								<div class="btnListGo">
-									<a class="ml10 m_width50px" href="javascript:reList();">목록</a>
+<!-- 									<a class="ml10 m_width50px" href="javascript:reList();">목록</a> -->
+									<c:choose>
+										<c:when test="${param.searchKeyWord!=null}">
+											<a class="ml10 m_width50px" href="./freeBoardList.do?pageIndex=<%=pageIndex%>&searchKeyCode=<%=request.getParameter("searchKeyCode")%>&searchKeyWord=<%=request.getParameter("searchKeyWord")%>">목록</a>
+										</c:when>
+										<c:otherwise>
+											<a class="ml10 m_width50px" href="./freeBoardList.do?pageIndex=<%=pageIndex%>">목록</a>
+										</c:otherwise>
+									</c:choose>
+									
 
 									
 										<a class="ml10 m_width50px" href="./delFreeboardProc.do?articleno=<%=article.getArticleno()%>&pageIndex=<%=pageIndex%>">삭제</a>

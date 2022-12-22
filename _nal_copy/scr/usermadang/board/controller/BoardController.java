@@ -148,7 +148,10 @@ public class BoardController extends HttpServlet {
 					
 		FreeboardDAO dao = FreeboardDAO.getInstance();
 		int articleno = Integer.parseInt(request.getParameter("articleno"));
-		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));	
+		int pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+		
+//		String searchKeyCode = request.getParameter("searchKeyCode");
+//		String searchKeyWord = request.getParameter("searchKeyWord");
 		
 		FreeboardVO board = new FreeboardVO();
 		board = dao.getArticleByArticleno(articleno, pageIndex);
@@ -157,7 +160,9 @@ public class BoardController extends HttpServlet {
 		
 		request.setAttribute("articleno", articleno);		 
    		request.setAttribute("pageIndex", pageIndex); 
-   		request.setAttribute("FreeBoardVO", board);   									
+   		request.setAttribute("FreeBoardVO", board);   
+//   		request.setAttribute("searchKeyCode", searchKeyCode);
+//		request.setAttribute("searchKeyWord", searchKeyWord);
 	}
 	//선택된 글 내용 수정하기
 	public void requestBoardUpdate(HttpServletRequest request){

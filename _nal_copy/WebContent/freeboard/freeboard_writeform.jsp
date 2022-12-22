@@ -1202,7 +1202,18 @@
 								</table>
 							</div>
 							<div class="pagingWrap">
-								<div class="btn1 mt0 "><a href="javascript:reList();">목록</a></div>
+								<div class="btn1 mt0 ">
+<!-- 									<a href="javascript:reList();">목록</a> -->
+									<c:choose>
+										<c:when test="${param.searchKeyWord!=null}">
+											<a class="ml10 m_width50px" href="./freeBoardList.do?searchKeyCode=<%=request.getParameter("searchKeyCode")%>&searchKeyWord=<%=request.getParameter("searchKeyWord")%>">목록</a>
+										</c:when>
+										<c:otherwise>
+											<a class="ml10 m_width50px" href="./freeBoardList.do?">목록</a>
+										</c:otherwise>
+									</c:choose>
+								
+								</div>
 								<div class="btn2 mt0 mr10"><a href="javascript:insertFreeBoard();">등록</a></div>
 							</div>
 						</div>
