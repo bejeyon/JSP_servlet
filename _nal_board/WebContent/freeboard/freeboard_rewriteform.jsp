@@ -393,7 +393,7 @@
                                             <a href="/libaryuseinfo/libUseUserTimeView.do">도서관이용</a>
                                             <ul>
                                                 <li><a href="/libaryuseinfo/libUseUserTimeView.do">이용안내</a></li>
-                                                <li><a href="/libaryuseinfo/infomationView.do">자료실</a></li>
+                                                <li><a href="./GuideServlet">자료실</a></li>
                                                 <li><a href="/libintroduce/etc/libDirectView.do">오시는 길</a></li>
                                             </ul>
                                         </li>
@@ -636,7 +636,7 @@
                                         <li><a href="/libaryuseinfo/mobileServiceView.do">모바일 서비스</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/libaryuseinfo/infomationView.do">자료실</a></li>
+                                <li><a href="./GuideServlet">자료실</a></li>
                                 <li><a href="/libintroduce/etc/libDirectView.do">오시는 길</a></li>
                             </ul>
                         </li>

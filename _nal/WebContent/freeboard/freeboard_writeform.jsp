@@ -6,17 +6,14 @@
 <%@ page import="java.util.*"%>
 <%@ page import="usermadang.board.model.FreeboardVO"%>
 <%@ page import="usermadang.board.model.FreeboardDAO"%>
-<%@ page import="member.model.MemberDAO" %>
-<%@ page import="member.model.MemberVO" %>
 
 <%
-	MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-//	String loginUser = (String) session.getAttribute("loginUser");
+	String sessionId = (String) session.getAttribute("sessionId");
 	FreeboardVO article = (FreeboardVO) request.getAttribute("FreeBoardVO");
 // 	int pageIndex = ((Integer) request.getAttribute("pageIndex")).intValue();
 	
 	FreeboardDAO dao = FreeboardDAO.getInstance();
-	String member_name = dao.getLoginNameById(loginUser.getMember_id());
+	String member_name = dao.getLoginNameById(sessionId);
 %>
 
 
@@ -177,49 +174,23 @@
                         
                             
                             
-								<c:set var="loginUser" value="<%=loginUser%>"></c:set>
-                                <c:choose>
-                                	<c:when test="${loginUser}!=null">
-	                                    <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
-	                                
-	                                <!-- 20181128 추가 직원 -->
-	                                
-	                                    <li><a href="./logout.do">로그아웃</a></li>
-	                                
-	                                
-	
-	                                
-	                                    <li><a href="/member/modyMember.do">마이페이지</a></li>
-	                                
-	
-	                                
-	                                    
-	                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
-                                 	</c:when>
-                                 	<c:otherwise>
-                                 		<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>
 
                                 
-                                <!-- <li class="new user"><b>홍길동</b>님 안녕하세요!</li> --> <!-- 로그인 시, 노출 -->
+                                    <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
                                 
-								        <li><a href="./login.do">로그인</a></li>
-                                 	</c:otherwise>
-                                 </c:choose>                                
-<%--                                     <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 --> --%>
+                                <!-- 20181128 추가 직원 -->
                                 
-<!--                                 20181128 추가 직원 -->
-                                
-<!--                                     <li><a href="javascript:logout();">로그아웃</a></li> -->
+                                    <li><a href="javascript:logout();">로그아웃</a></li>
                                 
                                 
 
                                 
-<!--                                     <li><a href="/member/modyMember.do">마이페이지</a></li> -->
+                                    <li><a href="/member/modyMember.do">마이페이지</a></li>
                                 
 
                                 
                                     
-<!--                                         <li><a href="/mylib/bitchReqInfo.do">My Library</a></li> -->
+                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
                                     
                                 
 
@@ -1105,7 +1076,7 @@
 	*/
 	function insertFreeBoard(){
 		
-		if (${loginUser==null}) {
+		if (${sessionId==null}) {
 			alert("로그인 해주세요.");
 			return false;
 		}
@@ -1224,7 +1195,7 @@
 										<td>
 											<span class="box00 t_pull2 m_pull2">
 												<pre><textarea id="contents" name="contents"></textarea></pre>
-												<input id="member_id" name="member_id" type="hidden" value="<%=loginUser%>">
+												<input id="member_id" name="member_id" type="hidden" value="<%=sessionId%>">
 											</span>
 										</td>
 									</tr>
