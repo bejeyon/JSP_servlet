@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="_nal_copy" path="/_nal_copy" reloadable="true" source="org.eclipse.jst.jee.server:_nal_copy"/><Context docBase="nal_edit" path="/nal_edit" reloadable="true" source="org.eclipse.jst.jee.server:nal_edit"/><Context docBase="_nal_original" path="/_nal_original" reloadable="true" source="org.eclipse.jst.jee.server:_nal_original"/><Context docBase="_2nd_project_nal_board" path="/_2nd_project_nal_board" reloadable="true" source="org.eclipse.jst.jee.server:_2nd_project_nal_board"/></Host>
+      <Context docBase="_nal_copy" path="/_nal_copy" reloadable="true" source="org.eclipse.jst.jee.server:_nal_copy"/><Context docBase="nal_edit" path="/nal_edit" reloadable="true" source="org.eclipse.jst.jee.server:nal_edit"/><Context docBase="_nal_original" path="/_nal_original" reloadable="true" source="org.eclipse.jst.jee.server:_nal_original"/><Context docBase="_2nd_project_nal_board" path="/_2nd_project_nal_board" reloadable="true" source="org.eclipse.jst.jee.server:_2nd_project_nal_board"/><Context docBase="_nal" path="/_nal" reloadable="true" source="org.eclipse.jst.jee.server:_nal"/></Host>
     </Engine>
   </Service>
 </Server>

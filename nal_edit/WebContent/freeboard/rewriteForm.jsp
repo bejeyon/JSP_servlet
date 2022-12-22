@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="java.util.*, controller.*"
+    import="java.util.*,guide.controller.*"
     isELIgnored="false"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*"%>
-<%@ page import="model.BoardDTO"%>
+<%@ page import="guide.model.BoardDTO"%>
 
 <%
 	String sessionId = (String) session.getAttribute("sessionId");
