@@ -354,7 +354,7 @@
                                             <ul>
                                                 <li><a href="/libaryuseinfo/faqServiceList.do">자주하는 질문</a></li>
                                                 <li><a href="/libaryuseinfo/selectQnaList.do">묻고답하기</a></li>
-                                                <li><a href="/usermadang/board/freeBoardList.do">자유게시판</a></li>
+                                                <li><a href="./freeBoardList.do">자유게시판</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -581,7 +581,7 @@
                             <ul>
                                 <li><a href="/libaryuseinfo/faqServiceList.do">자주하는 질문</a></li>
                                 <li><a href="/libaryuseinfo/selectQnaList.do">묻고답하기</a></li>
-                                <li><a href="/usermadang/board/freeBoardList.do">자유게시판</a></li>
+                                <li><a href="./freeBoardList.do">자유게시판</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -1015,7 +1015,7 @@
                         </li>
                         <li data-url="/usermadang/board/freeBoardList.do, /usermadang/board/freeBoardDetail.do, /usermadang/board/freeBoardForm.do,
                                         /usermadang/board/freeBoardAnswer.do, /usermadang/board/reFreeBoardForm.do">
-                            <a href="/usermadang/board/freeBoardList.do">자유게시판</a>
+                            <a href="./freeBoardList.do">자유게시판</a>
                         </li>
                     </ul>
                 </li>
