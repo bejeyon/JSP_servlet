@@ -863,7 +863,7 @@
     				$('.wu').attr('href', url);
     				
     			}, error: function(data, status, err) {
-    				alert("서버와의 통신이 실패했습니다.");
+//     				alert("서버와의 통신이 실패했습니다.");
     				console.log(data);
     	        }
     		});            
@@ -1126,7 +1126,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 		        }
 	        });
 		});
@@ -1211,7 +1211,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 		        }
 	        });
 		});
@@ -1302,7 +1302,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 		        }
 	        });
 		});
@@ -1396,7 +1396,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 				}
 			});
 		});
@@ -1486,7 +1486,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 				}
 			});
 		});
@@ -1573,7 +1573,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 				}
 			});
 		});
@@ -1665,7 +1665,7 @@
 					}
 
 				}, error: function(data, status, err) {
-					alert("서버와의 통신이 실패했습니다.");
+// 					alert("서버와의 통신이 실패했습니다.");
 		        }
 	        });
 		});

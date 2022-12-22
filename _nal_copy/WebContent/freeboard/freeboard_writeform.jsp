@@ -862,7 +862,7 @@
     				$('.wu').attr('href', url);
     				
     			}, error: function(data, status, err) {
-    				alert("서버와의 통신이 실패했습니다.");
+//     				alert("서버와의 통신이 실패했습니다.");
     				console.log(data);
     	        }
     		});            
@@ -1081,14 +1081,14 @@
 			return false;
 		}
   		
-  		if( writing.title.value == "" ) {
-  			writing.title.focus();
+  		if( freeBoardVO.title.value == "" ) {
+  			freeBoardVO.title.focus();
   	        alert("제목을 입력해 주십시오.");
   	        return false;	  	        
   	    }
   		
-  		if( writing.content.value == "" ) {
-  			writing.content.focus();
+  		if( freeBoardVO.content.value == "" ) {
+  			freeBoardVO.content.focus();
   	        alert("내용을 입력해 주십시오.");
   	        return false;	  	        
   	    }
@@ -1118,9 +1118,13 @@
 	function reList(){
 		
 		if (<%=request.getParameter("searchKeyWord")%>!=null) {
-			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}"
+			location.href = "./freeBoardList.do?searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}"
+
+<%-- 			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" --%>
 		} else {
-			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>"
+			location.href = "./freeBoardList.do"
+
+<%-- 			location.href = "./freeBoardList.do?pageIndex=<%=pageIndex%>" --%>
 		}
 		
 // 		$("#searchFreeBoardVO").attr("action", "/usermadang/board/freeBoardList.do").submit();
