@@ -1336,26 +1336,28 @@
                                 	<c:if test="${param.searchKeyWord!=null}">
                                 	<ul>
 										<c:if test="${pageIndex!=1}">
-											<li class=first><a href="<c:url value="./freeBoardList.do?pageIndex=1&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnFirst.png" style=border:0; alt=처음으로 /></a></li>
-											<li class=pre><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex - 1}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnPre.png" style=border:0; alt=이전으로 /></a></li>
+											<li class=first><a href="<c:url value="./freeBoardList.do?pageIndex=1&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnFirst.png" style=border:0; alt=처음으로 /></a></li>
+											<li class=pre><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex - 1}&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnPre.png" style=border:0; alt=이전으로 /></a></li>
 										</c:if>
 										
 										<c:forEach var="i" begin="<%=pageIndex > 6 ? pageIndex - 5 : 1 %>" end="<%=(pageIndex > 6 ? pageIndex + 5 : 11) > total_page ? total_page : (pageIndex > 6 ? pageIndex + 5 : 11)%>">
-											<a href="<c:url value="./freeBoardList.do?pageIndex=${i}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> ">
+<%-- 											<a href="<c:url value="./freeBoardList.do?pageIndex=${i}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "> --%>
 												<c:choose>
 													<c:when test="${pageIndex==i}">
-														<li class=active><font color='4C5317'><b> [${i}]</b></font></li>
+														<li class=active><a href="<c:url value="./freeBoardList.do?pageIndex=${i}&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><font color='4C5317'><b> [${i}]</b></font></a></li>
+<%-- 													<li class=active><font color='4C5317'><b> [${i}]</b></font></li> --%>
 													</c:when>
 													<c:otherwise>
-														<li><font color='4C5317'> [${i}]</font></li>
+														<li><a href="<c:url value="./freeBoardList.do?pageIndex=${i}&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><font color='4C5317'> [${i}]</font></a></li>													
+<%-- 													<li><font color='4C5317'> [${i}]</font></li> --%>
 						
 													</c:otherwise>
 												</c:choose>
 											</a>
 										</c:forEach>
 										<c:if test="${pageIndex!=total_page}">
-											<li class=next><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex + 1}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnNext.png" style=border:0; alt=다음으로 /></a></li>
-											<li class=end><a href="<c:url value="./freeBoardList.do?pageIndex=${total_page}&items=${param.searchKeyCode}&text=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnLast.png" style=border:0; alt=마지막으로 /></a></li>
+											<li class=next><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex + 1}&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnNext.png" style=border:0; alt=다음으로 /></a></li>
+											<li class=end><a href="<c:url value="./freeBoardList.do?pageIndex=${total_page}&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}" /> "><img src="${pageContext.request.contextPath}/images/img/btnLast.png" style=border:0; alt=마지막으로 /></a></li>
 										</c:if>
 									</ul>
 									</c:if>
