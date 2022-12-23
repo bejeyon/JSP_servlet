@@ -178,12 +178,13 @@
                             
                             
 
-                                
+							<c:choose>
+								<c:when test="${not empty sessionScope.sessionId}">
                                     <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
                                 
                                 <!-- 20181128 추가 직원 -->
                                 
-                                    <li><a href="javascript:logout();">로그아웃</a></li>
+                                    <li><a href="./logout.do">로그아웃</a></li>
                                 
                                 
 
@@ -194,9 +195,18 @@
                                 
                                     
                                         <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
-                                    
-                                
+								</c:when>
+								<c:otherwise>
+									<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>
 
+                                
+									<!-- <li class="new user"><b>홍길동</b>님 안녕하세요!</li> --> <!-- 로그인 시, 노출 -->
+                                
+						        	<li><a href="./login.do">로그인</a></li>
+								</c:otherwise>
+							</c:choose>
+                                
+							
                                 <li><a href="/english/main.do" target="_blank" title="새창열기">ENGLISH</a></li>
 <!--                                 <li><a href="https://www.facebook.com/NationalAssemblyLibraryROK/" target="_blank" title="새창열기">국회도서관 SNS</a></li> -->
                             
