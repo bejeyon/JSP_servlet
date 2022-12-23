@@ -2170,12 +2170,12 @@
 										</c:otherwise>
 									</c:choose>
 									
-
-									
+									<c:set var="writer_id" value="<%=article.getMember_id()%>"></c:set>
+									<c:if test="${sessionScope.sessionId == writer_id}">
 										<a class="ml10 m_width50px" href="./delFreeboardProc.do?articleno=<%=article.getArticleno()%>&pageIndex=<%=pageIndex%>">삭제</a>
 										
 											<a class="ml10 m_width50px" href="./freeBoardUpdate.do?articleno=<%=article.getArticleno()%>&pageIndex=<%=pageIndex%>">수정</a>
-										
+									</c:if>
 										
 									
 								</div><!-- //btnListGo -->
