@@ -1244,7 +1244,16 @@
 											</select>
 										</span>
 										<span class="left02 left02_49 left01_w215">
-			                            	<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text"/>
+											<c:choose>
+												<c:when test="${param.searchKeyWord==null}">
+													<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text"/>
+												</c:when>
+												<c:otherwise>
+													<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text" value="<%=searchKeyWord%>"/>
+					
+												</c:otherwise>
+											</c:choose>
+			                            	
 			                            </span>
 										<span class="left03 left03_01">
 			                           		<span class="btn">
