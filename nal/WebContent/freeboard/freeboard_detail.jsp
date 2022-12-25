@@ -12,6 +12,14 @@
 	FreeboardVO article = (FreeboardVO) request.getAttribute("FreeBoardVO");
 	int articleno = ((Integer) request.getAttribute("articleno")).intValue();
 	int pageIndex = ((Integer) request.getAttribute("pageIndex")).intValue();
+	int beforeno = ((Integer) request.getAttribute("beforeno")).intValue();
+	int afterno = ((Integer) request.getAttribute("afterno")).intValue();
+// 	if(beforeno != 0) {
+		FreeboardVO beforearticle = (FreeboardVO) request.getAttribute("beforeboard");
+// 	}
+// 	if(afterno != 0) {
+		FreeboardVO afterarticle = (FreeboardVO) request.getAttribute("afterboard");
+// 	}
 	
 	FreeboardDAO dao = FreeboardDAO.getInstance();
 	String member_name = dao.getLoginNameById(sessionId);
@@ -2182,7 +2190,78 @@
 										
 									
 								</div><!-- //btnListGo -->
-
+									<div class="txtTable">
+										<table>
+											<caption>자유게시판 상세화면 테이블이며, 이전글, 다음글로 구성</caption>
+											<colgroup>
+												<col style="width:15%;"/>
+												<col style="width:85%;"/>
+											</colgroup>
+											<tr>
+												<th scope="row">
+													<div class="box00 center overflowH w55">
+														<span class="icon"><i class="fa fa-angle-left fa-lg"
+																			  aria-hidden="true"></i></span><span
+															class="txt">이전글</span>
+													</div>
+												</th>
+												<td>
+													
+													<c:set var="beforearticle" value="<%=beforearticle%>"></c:set>
+													
+													<c:choose>
+														<c:when test="${empty beforearticle}">
+															<div class="box02">이전 글이 없습니다.</div>
+														</c:when>
+														<c:otherwise>
+															<c:choose>
+																<c:when test="${param.searchKeyWord==null}">
+																	<div class="box02"><a href="./freeBoardDetail.do?articleno=${beforearticle.getArticleno()}&pageIndex=<%=pageIndex%>">${beforearticle.getTitle()}</a></div>
+																</c:when>
+																<c:otherwise>
+																	<div class="box02"><a href="./freeBoardDetail.do?articleno=${beforearticle.getArticleno()}&pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}">${beforearticle.getTitle()}</a></div>
+									
+																</c:otherwise>
+															</c:choose>
+														</c:otherwise>
+													</c:choose>
+														
+													
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">
+													<div class="box00 center overflowH w55">
+														<span class="icon02"><i class="fa fa-angle-right fa-lg"
+																				aria-hidden="true"></i></span><span
+															class="txt02">다음글</span>
+													</div>
+												</th>
+												<td>
+													
+													<c:set var="afterarticle" value="<%=afterarticle%>"></c:set>
+													
+													<c:choose>
+														<c:when test="${empty afterarticle}">
+															<div class="box02">다음 글이 없습니다.</div>
+														</c:when>
+														<c:otherwise>
+															<c:choose>
+																<c:when test="${param.searchKeyWord==null}">
+																	<div class="box02"><a href="./freeBoardDetail.do?articleno=${afterarticle.getArticleno()}&pageIndex=<%=pageIndex%>">${afterarticle.getTitle()}</a></div>
+																</c:when>
+																<c:otherwise>
+																	<div class="box02"><a href="./freeBoardDetail.do?articleno=${afterarticle.getArticleno()}&pageIndex=<%=pageIndex%>&searchKeyCode=${param.searchKeyCode}&searchKeyWord=${param.searchKeyWord}">${afterarticle.getTitle()}</a></div>
+									
+																</c:otherwise>
+															</c:choose>
+														</c:otherwise>
+													</c:choose>
+													
+												</td>
+											</tr>
+										</table>
+									</div>
 								
 <!-- 									<div class="txtTable"> -->
 <!-- 										<table> -->

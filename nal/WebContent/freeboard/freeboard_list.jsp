@@ -1280,8 +1280,8 @@
 													
 													<c:choose>
 														<c:when test="${searchFreeBoardVO==null}">
-															<tr>
-																<td>등록된 글이 없습니다.</td>
+															<tr align="center">
+																<td colspan="5">등록된 게시물이 없습니다.</td>
 															</tr>
 														</c:when>
 														<c:when test="${searchFreeBoardVO!=null}">
@@ -1323,7 +1323,7 @@
 											<li class=pre><a href="<c:url value="./freeBoardList.do?pageIndex=${pageIndex - 1}" /> "><img src="${pageContext.request.contextPath}/images/img/btnPre.png" style=border:0; alt=이전으로 /></a></li>
 										</c:if>
 										
-										<c:forEach var="i" begin="<%=pageIndex > 6 ? pageIndex - 5 : 1 %>" end="<%=(pageIndex > 6 ? pageIndex + 5 : 11) > total_page ? total_page : (pageIndex > 6 ? pageIndex + 5 : 11)%>">
+										<c:forEach var="i" begin="<%=pageIndex > 5 ? pageIndex - 4 : 1 %>" end="<%=(pageIndex > 5 ? pageIndex + 4 : 10) > total_page ? total_page : (pageIndex > 5 ? pageIndex + 4 : 10)%>">
 											
 											<c:choose>
 												<c:when test="${pageIndex==i}">
