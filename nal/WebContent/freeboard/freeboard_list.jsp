@@ -16,9 +16,9 @@
 // 	//	String RequestURI = request.getRequestURI();
 	String searchKeyCode = (String) request.getAttribute("searchKeyCode");
 	String searchKeyWord = (String) request.getAttribute("searchKeyWord");
-	
+
 	FreeboardDAO dao = FreeboardDAO.getInstance();
-	String member_name = dao.getLoginNameById(sessionId);
+	String member_name = (String) session.getAttribute("sessionName");
 %>
 
 
@@ -194,7 +194,7 @@
 
                                 
                                     
-                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
+                                        <li><a href="./mylist.nal">My Library</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>
@@ -1244,16 +1244,7 @@
 											</select>
 										</span>
 										<span class="left02 left02_49 left01_w215">
-											<c:choose>
-												<c:when test="${param.searchKeyWord==null}">
-													<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text"/>
-												</c:when>
-												<c:otherwise>
-													<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text" value="<%=searchKeyWord%>"/>
-					
-												</c:otherwise>
-											</c:choose>
-			                            	
+			                            	<input id="searchKeyWord" name="searchKeyWord" title="검색어 입력" type="text"/>
 			                            </span>
 										<span class="left03 left03_01">
 			                           		<span class="btn">
@@ -1289,8 +1280,8 @@
 													
 													<c:choose>
 														<c:when test="${searchFreeBoardVO==null}">
-															<tr align="center">
-																<td colspan="5">등록된 게시물이 없습니다.</td>
+															<tr>
+																<td>등록된 글이 없습니다.</td>
 															</tr>
 														</c:when>
 														<c:when test="${searchFreeBoardVO!=null}">

@@ -1,8 +1,20 @@
 <!-- 국회소장자료 : 일반자료 상단 메뉴 --><!-- 국회소장자료 : 공공정책자료 상단 메뉴 --><!-- 국회소장자료 : 왼쪽 메뉴 --><!-- 외부기관소장자료 : 왼쪽메뉴 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
-<%@page import="main.*"%>
+<%@page import="book.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ page import="usermadang.board.model.FreeboardDAO"%>
+
+
+<% 	 
+	String sessionId = (String) session.getAttribute("sessionId");
+	FreeboardDAO dao = FreeboardDAO.getInstance();
+	String member_name = (String) session.getAttribute("sessionName");
+%>
+
+
+
+
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"  /> 
 
@@ -87,19 +99,20 @@
 				url:"${contextPath}/search.nal",			//전송할 서블릿 지정
 				data: {keyword: putkeyword},
 				success:function (data, textStatus){	//전송과 응답이 성공했을 경우 작업 설정
+					console.log(data);
 					var jsoninfo = JSON.parse(data);	//서블릿에서 가져온 데이터를 받음
-					var bookinfo = "<ol id = 'asearch'>";
+					var bookinfo = "<ul class='list'>";
 					for(var i in jsoninfo.books) {
-						bookinfo += "<li><fieldset><p><h4>";
+						bookinfo += "<li><a href='javascript:searchInnerDetail('MONO1201539978', 'Y')' title='상세 바로가기'>";
 						bookinfo += jsoninfo.books[i].book_title + "/";
-						bookinfo += jsoninfo.books[i].author + "</h4></p><p>";
-						bookinfo += jsoninfo.books[i].publishing + " | ";
-						bookinfo += jsoninfo.books[i].room_name + " | ";
-						bookinfo += jsoninfo.books[i].book_sorting + " | ";
-						bookinfo += jsoninfo.books[i].shape + " | ";
-						bookinfo += jsoninfo.books[i].isbn + "</p></fieldset></li>";
-					} //end for
-					bookinfo += "</ol>"
+						bookinfo += jsoninfo.books[i].author + "<img src='./images/ko/ico/star_30.png' alt='인기도' /></a><ul><li>";
+						bookinfo += jsoninfo.books[i].publishing + "</li><li>";
+						bookinfo += jsoninfo.books[i].book_sorting + "</li><li>";
+						bookinfo += jsoninfo.books[i].room_name + "</li>";
+						bookinfo += "</ul><a href = './mylibrary.nal?isbn=" + jsoninfo.books[i].isbn + "' title='내서재담기'><img src='./images/ko/ico/briefIco1.png' alt='인기도' /></a></li>";
+					}
+					bookinfo += "</ul>" 
+						console.log(data);
 					$("#output").html(bookinfo);
 				}, //end success function
 				error: function (data, textStatus) {
@@ -109,6 +122,10 @@
 		});//end showbookinfo function
 	});//end function
 </script>
+
+
+
+
 
 <script type="text/javascript">
 /* table 반응형처리 */
@@ -173,14 +190,20 @@ function searchCom()
     <h2 class="skip">탑메뉴</h2>
     <ul>
         
-            
-            
-                <li><a href="#firstVisit" rel="modal:open" title="처음방문이세요?">처음방문이세요?</a></li>
-                <li><a href="./login.do" title="로그인">로그인</a></li>
-                <li><a href="./selectMember.do" title="회원가입">회원가입</a></li>
-            
+            <c:choose>
+				<c:when test="${not empty sessionScope.sessionId}">
+                                <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
+                                <li><a href="./logout.do">로그아웃</a></li>
+                                <li><a href="/member/modyMember.do">마이페이지</a></li>
+                                 <li class="myLibrary"><a href="./mylist.nal" title="My Library" id="myLib">My Library</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>
+		        	<li><a href="./login.do">로그인</a></li>
+				</c:otherwise>
+			</c:choose>
         
-        <li class="myLibrary"><a href="/mylist/usedLibList.do" title="My Library" id="myLib">My Library</a></li>
+        
     </ul>
 </nav>
 
@@ -1395,7 +1418,7 @@ function searchCom()
                     <div class="f-L">
                     
                     
-                        <a href="#" class="searchOption1" onclick="fn_myLibrary('list');" title="내서재담기">내서재담기</a>
+                        
                         
 	                        
 	                            
@@ -1446,38 +1469,37 @@ function searchCom()
                         
                     </div>
                 </div>
-                <div class="searchList">
+                <div class="searchList" id = "output">
                  
-                 <div id="output">
+                
                  <c:choose>
 			<c:when test="${(count == 0) && (infoArr==null)}">
 				<tr>
 					<td>책이 없습니다.</td>					
 				</tr>
 			</c:when>
+			
 			<c:when test="${(count == 0) && (infoArr != null)}">
-				<ol id = "asearch">
+				<ul class="list">
 				<c:forEach var="list" items="${infoArr}">
+					<li><a href='javascript:searchInnerDetail('MONO1201539978', 'Y')' title='상세 바로가기'>
 					
-					<li><fieldset ><p><h4>
 						${list.book_title} / 
-				<%-- 		<td><a href="./BoardViewAction.do?articleno=${list.articleno}&pagenum=<%=pagenum%>">${list.title}</a></td> --%>
-						${list.author}</h4></p>
-						<p>${list.publishing} |
-						${list.room_name}</p></fieldset></li>
-					
-									
+				
+						${list.author}
+						<img src='./images/ko/ico/star_30.png' alt='인기도' /></a>
+						<ul>
+						<li>${list.publishing}</li>
+						<li>${list.book_sorting}</li>
+						<li>${list.room_name}</li>
+						
+						</ul>
+						<a href = './mylibrary.nal?isbn=${list.isbn}' title='내서재담기'><img src='./images/ko/ico/briefIco1.png' alt='인기도' /></a>
+						</li>			
 				</c:forEach>
-				</ol>				
-			</c:when>
-			
-
-			
+				</ul>		
+			</c:when>		
 		</c:choose>
-                 
-                 </div>
-                 
-                 
                 </div>
                 
                 
@@ -2439,6 +2461,9 @@ function searchPcLoginForReservationProc(viewType){
 	}
 }
 </script>
+
+
+
 
 <script type="text/javascript" defer='defer'>
 	/* CLICKZONE SCRIPT V.V.4 *//*X*//* COPYRIGHT 2002-2020 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/var _CZN="26";

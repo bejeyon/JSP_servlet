@@ -18,13 +18,12 @@ public class SearchPwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 
-		String member_id=null;
-		
+		String member_id=null;		
 		member_id = request.getParameter("member_id");
 		
-		request.setAttribute("member_id", member_id);
+		HttpSession session = request.getSession();
+		session.setAttribute("member_id", member_id);
 		
 		System.out.println("SearchPwdServlet member_id: "+member_id);
 		

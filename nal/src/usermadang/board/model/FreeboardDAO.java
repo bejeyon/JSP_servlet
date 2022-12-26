@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import usermadang.board.util.DBConnection;
+import util.DBConnection;
 
 public class FreeboardDAO {
 	
@@ -155,7 +155,7 @@ public class FreeboardDAO {
 			pstmt.setInt(2, articleno);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
-			System.out.println("updateHit() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -194,7 +194,7 @@ public class FreeboardDAO {
 			
 			return loginname;
 		} catch(Exception e) {
-			System.out.println("getLoginNameById() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -244,7 +244,7 @@ public class FreeboardDAO {
 			
 			return vo;
 		} catch(Exception e) {
-			System.out.println("getArticleByArticleno() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -263,7 +263,7 @@ public class FreeboardDAO {
 		
 		return null;
 	}
-	
+
 	public int getBeforeArticleno(int articleno, String searchKeyCode, String searchKeyWord) {
 		int boforeArticleno = 0;
 		
@@ -379,7 +379,7 @@ public class FreeboardDAO {
 			pstmt.setString(4, getLoginNameById(vo.getMember_id()));
 			pstmt.executeUpdate();
 		} catch(Exception e) {
-			System.out.println("insertArticle() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -412,7 +412,7 @@ public class FreeboardDAO {
 			pstmt.setInt(3, vo.getArticleno());
 			pstmt.executeUpdate();
 		} catch(Exception e) {
-			System.out.println("updateArticle() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {
@@ -444,7 +444,7 @@ public class FreeboardDAO {
 			pstmt.setInt(1, articleno);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
-			System.out.println("deleteArticle() 에러 : " + e);
+			System.out.println("getTotalArticleList() 에러 : " + e);
 		} finally {
 			try {
 				if(rs != null) {

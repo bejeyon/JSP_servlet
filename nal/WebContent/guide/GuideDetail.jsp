@@ -11,7 +11,7 @@
 <% 	ArrayList<GuideVO> volist = (ArrayList<GuideVO>) request.getAttribute("volist"); 
 	String sessionId = (String) session.getAttribute("sessionId");
 	FreeboardDAO dao = FreeboardDAO.getInstance();
-	String member_name = dao.getLoginNameById(sessionId);
+	String member_name = (String) session.getAttribute("sessionName");
 %>
 
 <c:set var="volist" value="<%=volist%>"></c:set>
@@ -160,7 +160,7 @@
                                     <li class="new user"><b><%=member_name%></b>님 안녕하세요!</li> <!-- 로그인 시, 노출 -->
                                     <li><a href="./logout.do">로그아웃</a></li>
                                     <li><a href="/member/modyMember.do">마이페이지</a></li>
-                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
+                                        <li><a href="./mylist.nal">My Library</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>

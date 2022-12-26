@@ -14,15 +14,15 @@
 	int pageIndex = ((Integer) request.getAttribute("pageIndex")).intValue();
 	int beforeno = ((Integer) request.getAttribute("beforeno")).intValue();
 	int afterno = ((Integer) request.getAttribute("afterno")).intValue();
-// 	if(beforeno != 0) {
+	//	if(beforeno != 0) {
 		FreeboardVO beforearticle = (FreeboardVO) request.getAttribute("beforeboard");
-// 	}
-// 	if(afterno != 0) {
+	//	}
+	//	if(afterno != 0) {
 		FreeboardVO afterarticle = (FreeboardVO) request.getAttribute("afterboard");
-// 	}
+	//	}
 	
 	FreeboardDAO dao = FreeboardDAO.getInstance();
-	String member_name = dao.getLoginNameById(sessionId);
+	String member_name = (String) session.getAttribute("sessionName");
 %>
 
 
@@ -201,7 +201,7 @@
 
                                 
                                     
-                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
+                                        <li><a href="./mylist.nal">My Library</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>

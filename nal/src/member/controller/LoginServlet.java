@@ -25,7 +25,10 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	// 회원인증
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html; charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		
 		String url = "member/login.jsp";	// 회원인증 실패 시 이동할 페이지(jsp)를 url 변수에 저장
 		
@@ -41,9 +44,10 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(); // 세션 객체 생성
 			session.setAttribute("loginUser", mVo); // 세션에 회원정보 저장
 			session.setAttribute("sessionId", mVo.getMember_id());	// 세션에 회원 ID 저장
+			session.setAttribute("sessionName", mVo.getMember_name());
 			// 수정하기
 			request.setAttribute("message", "회원가입에 성공했습니다."); // jsp 페이지에 보낼 메시지를 요청 객체에 저장
-			url = "/freeBoardList.do"; // 회원 인증 성공 시 이동 가능한 main페이지 url 변수에 저장
+			url = "/"; // 회원 인증 성공 시 이동 가능한 main페이지 url 변수에 저장
 		} else if (result == 0) { // 비밀번호가 불일치할 경우
 			// 수정하기
 			request.setAttribute("message", "비밀번호가 맞지 않습니다.");

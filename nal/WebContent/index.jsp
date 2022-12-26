@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="usermadang.board.model.FreeboardDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+   
+
+<% 	 
+	String sessionId = (String) session.getAttribute("sessionId");
+	FreeboardDAO dao = FreeboardDAO.getInstance();
+	String member_name = (String) session.getAttribute("sessionName");
+%> 
+    
     <!DOCTYPE html>
     <html lang="ko">
     <head>
@@ -88,12 +98,36 @@
         </div>
         <div class="linkArea">
             <ul>
-                <li class="login">
+                
                     
-                        <a href="./login.do">로그인</a>
+                        
+                <c:choose>
+                
+                <c:when test = "${sessionScope.sessionId == null}">
+                
+                <li class="login" >
+                	<a href="./login.do">로그인</a>
+                	</li>
+                </c:when>
+                
+                
+	         
+				<c:otherwise >
+                  <li class="login">
+                  <a href="#"><%=member_name%>님!</a>
+                  
+                  </li> <!-- 로그인 시, 노출 -->
+                 </c:otherwise>
+				
+			</c:choose>
+                        
+                        
+                        
+                        
+                        
                     
                     
-                </li>
+               
                 <li class="closeday"><a href="http://localhost:8080/nal">휴관일 안내</a></li>
                 <li class="notice"><a href="./freeBoardList.do">자유게시판</a></li>
                 <li class="map"><a href="./GuideServlet">도서관소개</a></li>

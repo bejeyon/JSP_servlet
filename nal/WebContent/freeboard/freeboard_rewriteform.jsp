@@ -14,7 +14,7 @@
 	int pageIndex = ((Integer) request.getAttribute("pageIndex")).intValue();
 	
 	FreeboardDAO dao = FreeboardDAO.getInstance();
-	String member_name = dao.getLoginNameById(sessionId);
+	String member_name = (String) session.getAttribute("sessionName");
 %>
 
 
@@ -193,7 +193,7 @@
 
                                 
                                     
-                                        <li><a href="/mylib/bitchReqInfo.do">My Library</a></li>
+                                        <li><a href="./mylist.nal">My Library</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="new"><a href="./selectMember.do" title="새창열기">처음 방문하셨나요?</a></li>
