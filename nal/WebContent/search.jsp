@@ -428,8 +428,8 @@ function searchCom()
     var languageCode         = "";
     var fieldText            = "";
     var prevPubYearFieldText = "";
-    var totalSize            = "42";
-    var totalSizeByMenu      = "1";
+    var totalSize            = "";
+    var totalSizeByMenu      = "";
  	//소장도서관 패킷정보 추가, 20211125 KHJ
     var dpBranch       		 = "ALL";
     //학술지종류 정보 추가, 20211224 KHJ
@@ -553,7 +553,7 @@ function searchCom()
                     
                         
                         
-                            <li id="s_ALL" data-api="ALL" data-api-name="전체"><a href="javascript:changeDbDiv('ALL')" title="전체">전체<span>42</span></a></li>
+                            <li id="s_ALL" data-api="ALL" data-api-name="전체"><a href="javascript:changeDbDiv('ALL')" title="전체">전체<span></span></a></li>
                         
                     
                 
@@ -566,7 +566,7 @@ function searchCom()
                                 
                                 
                                 
-                                도서자료<span>1</span>
+                                도서자료<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -581,7 +581,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                일반도서<span>(1)</span>
+                                                일반도서<span>()</span>
                                                 </a></li>
                                            
                                                 <li id="s_EBOK" data-api="EBOK" data-api-name="E-BOOK">
@@ -591,7 +591,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                E-BOOK<span>(0)</span>
+                                                E-BOOK<span>()</span>
                                                 </a></li>
                                            
                                                 <li id="s_OLDP" data-api="OLDP" data-api-name="고서">
@@ -601,7 +601,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                고서<span>(0)</span>
+                                                고서<span>()</span>
                                                 </a></li>
                                            
                                                 <li id="s_PAMP" data-api="PAMP" data-api-name="세미나자료">
@@ -611,7 +611,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                세미나자료<span>(0)</span>
+                                                세미나자료<span>()</span>
                                                 </a></li>
                                            
                                                 <li id="s_WNET" data-api="WNET" data-api-name="웹자료">
@@ -621,7 +621,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                웹자료<span>(0)</span>
+                                                웹자료<span>()</span>
                                                 </a></li>
                                            
                                         </ol>
@@ -641,7 +641,7 @@ function searchCom()
                                 
                                 
                                 
-                                학위논문<span>0</span>
+                                학위논문<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -656,7 +656,7 @@ function searchCom()
 				                                
 				                                
 				                                
-                                                학위논문<span>(15)</span>
+                                                학위논문<span></span>
                                                 </a></li>
                                            
                                         </ol>
@@ -676,7 +676,7 @@ function searchCom()
                                 
                                 
                                 
-                                연속간행물&middot;학술기사<span>0</span>
+                                연속간행물&middot;학술기사<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -751,7 +751,7 @@ function searchCom()
                                 <a href="#" title="멀티미디어">
                                 
                                 
-                                멀티미디어<span>0</span>
+                                멀티미디어<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -826,7 +826,7 @@ function searchCom()
                                 <a href="#" title="국회자료">
                                 
                                 
-                                국회자료<span>0</span>
+                                국회자료<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -881,7 +881,7 @@ function searchCom()
                                 <a href="#" title="특화자료">
                                 
                                 
-                                특화자료<span>0</span>
+                                특화자료<span></span>
                                 </a>
 
                                 <div class="thirdDepth">
@@ -1046,7 +1046,7 @@ function searchCom()
 	    	
 	    
 
-        <p>검색결과 ( 1건 / 전체 <span class="count">42</span>건)</p>
+        <p>검색결과 <span class="count"></span></p>
     
 
 

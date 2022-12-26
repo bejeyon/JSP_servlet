@@ -1,6 +1,8 @@
+/* 작성자 배재연 */
 package usermadang.board.model;
 
 public class FreeboardVO {
+	// DB의 freeboard의 모든 열들을 VO class의 필드로 선언
 	private int articleno;
 	private String title;
 	private String content;
@@ -9,11 +11,13 @@ public class FreeboardVO {
 	private String member_name;
 	private int hit;
 	private int deletion;
-
+	
+	// 기본 생성자
 	public FreeboardVO() {
 		super();
 	}
 
+	// setter 및 getter
 	public int getArticleno() {
 		return articleno;
 	}
