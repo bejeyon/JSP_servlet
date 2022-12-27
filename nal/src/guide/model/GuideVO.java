@@ -1,6 +1,7 @@
+/*작성자 박주영*/
 package guide.model;
 
-//guide테이블에 들어가는 정보를 get/set메서드를 사용하여 활용할 수 있도록 하는 클래스 생성
+//guide테이블에 들어가는 정보를 get set메서드를 사용하여 활용할 수 있도록 하는 클래스 생성
 public class GuideVO {
   private int guide_room_code; // pk 번호
   private String guide_room_name; // 시설 이름
@@ -9,7 +10,7 @@ public class GuideVO {
   private String guide_location; //위치
   private String guide_phonenumber; //전화번호
   
-//get/set 메서드 정의
+//get set 메서드 정의
 	public int getGuide_room_code() {
 		return guide_room_code;
 	}
@@ -46,5 +47,4 @@ public class GuideVO {
 	public void setGuide_phonenumber(String guide_phonenumber) {
 		this.guide_phonenumber = guide_phonenumber;
 	}
-  
 }//end class

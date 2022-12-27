@@ -1,3 +1,4 @@
+/*작성자 문수지*/
 package member.controller;
 
 import java.io.IOException;
@@ -9,28 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class selectMemberForm
- */
+// 회원가입 버튼을 클릭시 나오는 페이지
 @WebServlet("/selectMember.do")
 public class SelectMemberForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public SelectMemberForm() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
+    // /selectMember.do servlet mapping 요청 시 연령대별 회원가입 시작 작업을 선택하는 selectMember.jsp 페이지로 이동
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("member/selectMember.jsp");
 		dispatcher.forward(request, response);
 	}
-
-
 }

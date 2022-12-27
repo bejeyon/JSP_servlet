@@ -1,13 +1,14 @@
+//작성자: 이기쁨
 package book.model;
-
+//mylibrary에서 출력할 책 정보를 담고있는 mylist VIEW 의 열들을 필드로 선언
 public class MyListVO {
-	private long mylist_code;
-	private String member_id;
-	private long isbn;	
-	private String book_title;
-	private String author;
-	private String publishing;
-	private String book_sorting;
+	private long mylist_code;		//mylibrary 테이블의 mylibrary_code의 열이름을 바꿔서 저장
+	private String member_id;		//회원명
+	private long isbn;				//책 코드 isbn
+	private String book_title;		//책 제목	
+	private String author;			//작가
+	private String publishing;		//출판 정보
+	private String book_sorting;	//청구 기호
 
 		
 	public MyListVO() {

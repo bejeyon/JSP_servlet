@@ -1,17 +1,18 @@
+//작성자: 이기쁨
 package book.model;
-
+//도서 검색 시 출력될 도서 정보 담고있는 book 테이블의 열이름 필드로 저장
 public class BookVO {
-	private long book_code;
-	private String book_title;
-	private String author;
-	private String publishing;
-	private String book_sorting;
-	private String room_name;
-	private long isbn;
+	private long book_code;			// 저장 순서 sequence
+	private String book_title;		// 책 제목
+	private String author;			// 작가
+	private String publishing;		// 출판 정보
+	private String book_sorting;	// 청구 기호
+	private String room_name;		// 자료실
+	private long isbn;				// isbn
 		
 	public BookVO() {
 	}
-		
+	
 	public long getBook_code() {
 		return book_code;
 	}

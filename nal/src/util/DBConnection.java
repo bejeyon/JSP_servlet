@@ -1,4 +1,6 @@
+/*작성자 박주영*/
 package util;
+
 import java.sql.Connection;
 import java.sql.SQLException;
  
@@ -24,12 +26,9 @@ public class DBConnection
             Connection conn = ds.getConnection();
             return conn;
             
-            /*
-             * 위의 코드를 아래와 같이 줄여서 작성 가능하다.
+            /*위의 코드를 아래와 같이 줄여서 작성 가능하다.
              Context context = new InitialContext();
              DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/oracle");
-             Connection con = dataSource.getConnection(); 
-             
-             */
+             Connection con = dataSource.getConnection();*/
     }
 }

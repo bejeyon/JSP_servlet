@@ -3,9 +3,6 @@
 <%@ include file="../header.jsp" %>
 <title>마이페이지>로그인</title>
 
-						
-							
-	
 	<div class="wrap">
         <div class="inner">
         <!-- 중앙 좌측 회원목록, 기타 메뉴 섹션 -->
@@ -27,16 +24,14 @@
                         <a href="#">열람증</a>
                         <ul>
                             <li data-url="/member/mobilePassForm.do, /member/insertPassForm.do"><a href="/member/mobilePassForm.do">모바일 간편열람증</a></li>
-    <!--                         <li data-url="/member/studentPassForm.do"> -->
-    <!--                             <a href="/member/studentPassForm.do">학생증 시범사업</a> -->
-    <!--                         </li> -->
                         </ul>
                     </li>
                 </ul>
             </div><!-- //왼쪽메뉴 -->
         </div>
         
-        <!-- <로그인>버튼 클릭하면 입력된 정보를 받아 DB에 해당 정보가 저장되어 있는지 확인하는 작업을 서블릿에서 해야 함
+        <!--작성자 문수지 
+        	<로그인>버튼 클릭하면 입력된 정보를 받아 DB에 해당 정보가 저장되어 있는지 확인하는 작업을 서블릿에서 해야 함
 			     so, 요청이 일어날 때마다 서블릿 클래스를 별도로 만들어서 처리하기보단 로그인 입력 폼을 띄우기 위해 사용했던 동일한 요청에 요청방식만 post로 주어서
 			     	로그인을 위한 DB 처리작업을 함  >> LoginServlet클래스의 doPost()-->						
 		<form id="memberVO" action="login.do" method="post" name="loginfrm">
@@ -90,6 +85,7 @@
                                                         <input type="submit" value="로그인" onclick="return loginCheck()"/>
                                                         
  <script>
+ // 작성자 문수지
  function loginCheck() {
 		/* 아이디 입력상자 : 이름이 loginfrm인 폼 태그 내부에 존재 */
 		if (loginfrm.member_id.value.length == 0) {
@@ -113,6 +109,7 @@
 	}
  </script>
 
+<!-- 작성자 문수지 -->
 <c:if test="${result == 0 }">
 	<script>
 		alert("아이디 또는 비밀번호가 일치하지 않습니다.");

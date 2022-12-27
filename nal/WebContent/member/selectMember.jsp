@@ -245,28 +245,12 @@
                     <a href="#">열람증</a>
                     <ul>
                         <li data-url="/member/mobilePassForm.do, /member/insertPassForm.do"><a href="/member/mobilePassForm.do">모바일 간편열람증</a></li>
-<!--                         <li data-url="/member/studentPassForm.do"> -->
-<!--                             <a href="/member/studentPassForm.do">학생증 시범사업</a> -->
-<!--                         </li> -->
                     </ul>
                 </li>
 
             </ul>
         </div><!-- //왼쪽메뉴 -->
     </div>
-	
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
 	$(document).ready(function () {
@@ -324,63 +308,6 @@
 	</div>
 </div>
 </form>
-	
-
-
-
-
-
-<!-- [start] 접속 로그 -->
-<script type="text/javascript">
-
-    //컨텐츠 경로 구분 값(전체페이지 공통)
-    var _TRK_CP = "";
-    var TEXT = "";
-    $('.location li').each(function(index, item){
-        if(index > 0){
-            if(window.location.href.indexOf('monthLibView.do') > -1){
-                TEXT = '월간 국회도서관';
-            }else{
-                TEXT = $(item).find('a').text();
-            }
-            _TRK_CP += "^"+TEXT;
-        }
-    });
-
-
-
-
-
-
-    
-
-
-
-    // 연령 추출
-    function getAges(birthday){
-        var ages = new Date().getFullYear() - Number(birthday.substr(0,4)) + 1;
-
-        if(ages <= 9){
-            return "A";
-        }else if(ages <= 19){
-            return "B";
-        }else if(ages <= 29){
-            return "C";
-        }else if(ages <= 39){
-            return "D";
-        }else if(ages <= 49){
-            return "E";
-        }else if(ages <= 59){
-            return "F";
-        }else if(ages <= 69){
-            return "G";
-        }else if(ages >= 70){
-            return "H";
-        }else{
-            return "";
-        }
-    }
-</script>
 
 
     <script type='text/javascript' src="/js/bs_trk.js"></script>

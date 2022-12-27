@@ -1,3 +1,4 @@
+//작성자: 이기쁨
 package book.model;
 
 import java.sql.Connection;
@@ -7,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import util.DBConnection;
-
+//DB의 mylibrary 테이블 데이터를 가져와서 사용할 DAO 클래스 
 public class MylibraryDAO {
 	Connection conn = null;
 	
@@ -16,7 +17,7 @@ public class MylibraryDAO {
 	public static MylibraryDAO getInstance() {
 		return instance;
 	}
-	
+	//내서재에 회원아이디, isbn을 INSERT 하는 메서드
 	public void insertMyLibrary(MylibraryVO vo) {
 		String sql = "INSERT INTO nal.mylibrary(mylibrary_code, member_id, isbn) VALUES(mylibrary_seq.nextval, ?, ?)";				
 		try {

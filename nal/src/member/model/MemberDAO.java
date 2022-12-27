@@ -1,3 +1,4 @@
+/*작성자 문수지*/
 package member.model;
 
 import java.sql.Connection;
@@ -25,14 +26,15 @@ public class MemberDAO {
 	//member 테이블과 비교해 존재하지 않으면 -1, ID만 일치하면 0, 모두 일치하면 1 리턴
 	public int login(String member_id, String member_pw) {
 		int result = -1; // 회원이 없는 것을 가정하고 시작
-		String sql = "SELECT member_pw FROM member WHERE member_id = ?"; // 로그인 폼에서 입력받은 ID로 member 테이블에서 PW 얻어옴
+		// select문으로 로그인 폼에서 입력받은 ID를 통해 member 테이블에서 PW 얻어옴
+		String sql = "SELECT member_pw FROM member WHERE member_id = ?"; 		
 		Connection conn = null;	
 		PreparedStatement pstmt = null;	
 		ResultSet rs = null;
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member_id); // select 문의 ? 에 매개변수로 받아온 아이디를 바인딩시킴
+			pstmt.setString(1, member_id); // select 문 ? 에 매개변수로 받아온 아이디를 바인딩
 			rs = pstmt.executeQuery(); // 쿼리문 실행 시 결과값을 ResultSet 객체인 rs에 저장
 			
 			if (rs.next()) { // ID가 일치하는 행이 존재하면 true
@@ -44,7 +46,6 @@ public class MemberDAO {
 			} else { // 해당 ID가 존재하지 않을 경우
 				result = -1;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -57,12 +58,13 @@ public class MemberDAO {
 			}
 		}
 		return result;
-	}
+	} // end login()
 
 	// ID로 회원 정보 가져오는 메소드
 	//member 테이블에서 ID로 해당 회원을 찾아 회원 정보를 MemberVO 객체로 가져옴
 	public MemberVO getMember(String member_id) {
 		MemberVO mVo = null;
+		// select문으로 해당하는 member_id와 일치하는 정보들 얻어옴
 		String sql = "SELECT * FROM member WHERE member_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -73,7 +75,7 @@ public class MemberDAO {
 			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 			
-			if (rs.next()) { // ID가 일치하는 로우가 존재할 경우 VO객체에 DB에 저장된 회원정보 채움 
+			if (rs.next()) { // ID가 일치하는 로우가 존재할 경우 VO객체에 DB에 저장된 회원정보를 채움 
 				mVo = new MemberVO();
 				mVo.setMember_id(rs.getString("member_id"));
 				mVo.setMember_pw(rs.getString("member_pw"));
@@ -95,11 +97,13 @@ public class MemberDAO {
 			}
 		}
 		return mVo;
-	}
+	} // end getMember()
 	
-	// 아이디 중복체크
+	// 아이디 중복체크 메소드
+	// member 테이블과 비교해 중복된 아이디가 있을 경우 1, 중복되지 않을 경우 -1 리턴
 	public int confirmID(String member_id) {
 		int result = -1;
+		// select문을 통해 입력한 ID와 member 테이블을 비교하여 일치한 ID가 있는지 유무 확인
 		String sql = "SELECT member_id FROM member WHERE member_id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -127,11 +131,13 @@ public class MemberDAO {
 			}
 		}
 		return result;
-	}
+	} // end confirmID()
 	
-	// 회원가입 >> 회원 정보를 DB에 추가하는 메소드
+	// 회원가입 메소드
+	// 입력한 회원 정보를 DB의 member테이블에 추가하는 메소드
 	public int insertMember(MemberVO mVo) {
 		int result = -1;
+		// insert문을 통해 입력한 정보를 member 테이블에 추가
 		String sql = "INSERT INTO member(member_code, member_id, member_name, member_birthdate, member_pw, member_email, member_phone, member_address) VALUES(member_code_seq.nextval, ?, ?, ?, ?, ?, ?, ?)"; // 회원정보를 member테이블에 삽입하기 위한 insert문
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -158,10 +164,11 @@ public class MemberDAO {
 			}
 		}
 		return result;
-	}
+	} // end insertMember()
 	
 	// ID찾기 메소드
-	public String SearchId(String member_name, String member_email, String member_birthdate) {
+	// ID를 찾을 경우 필요한 열들로 뷰 테이블을 생성하여 정보를 불러와 대조
+	public String searchId(String member_name, String member_email, String member_birthdate) {
 		String member_id = null; // 회원이 없는 것을 가정하고 시작
 		String sql = "SELECT \"column2\" FROM view1 WHERE \"column3\" = ? and \"column5\" = ? and \"column4\" = ?";// 뷰 사용
 		Connection conn = null;	
@@ -175,14 +182,12 @@ public class MemberDAO {
 			pstmt.setString(3, member_birthdate);
 			rs = pstmt.executeQuery(); // 쿼리문 실행 시 결과값을 ResultSet 객체인 rs에 저장
 			
-			if (rs.next()) { // 존재하면 true
+			if (rs.next()) { // ID가 존재하면 true
 				member_id = rs.getString(1);
 				
-			} else { // 존재하지 않을 경우
+			} else { // 정보와 일치한 ID가 존재하지 않을 경우
 				member_id = null;
 			}
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -195,18 +200,19 @@ public class MemberDAO {
 			}
 		}
 		return member_id;
-	}
+	} // end searchId()
 	
 	// PW변경 메소드
+	// PW변경 폼에서 입력받은 새PW로 업데이트
 	public int updatePw(String member_pw, String member_id) {
 		int result = -1;
+		// update문을 사용하여 해당하는 member_id의 member_pw를 입력한 값으로 변경
 		String sql = "UPDATE member SET member_pw = ? WHERE member_id = ?";
 		Connection conn = null;	
 		PreparedStatement pstmt = null;	
 		try {
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(sql);
-
 			pstmt.setString(1, member_pw);
 			pstmt.setString(2, member_id);
 			result = pstmt.executeUpdate();
@@ -221,5 +227,5 @@ public class MemberDAO {
 				}
 			}
 		return result;
-	}
+	} // end updatePw()
 }

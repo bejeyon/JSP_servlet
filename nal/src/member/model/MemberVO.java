@@ -1,6 +1,8 @@
+/*작성자 문수지*/
 package member.model;
 
 public class MemberVO {
+	// DB의 member 테이블의 열들을 MemberVO 클래스 필드로 선언
 	private String member_id;
 	private String member_pw;
 	private String member_name;
@@ -8,7 +10,12 @@ public class MemberVO {
 	private String member_phone;
 	private String member_birthdate;
 	private String member_address;
+	
+	// 기본생성자
+	public MemberVO() {
+	}
 
+	// getter, setter
 	public String getMember_id() {
 		return member_id;
 	}
@@ -51,13 +58,4 @@ public class MemberVO {
 	public void setMember_address(String member_address) {
 		this.member_address = member_address;
 	}
-
-	//객체에 저장된 필드 값들을 출력해서 보기 쉽게 하기 위함
-	@Override
-	public String toString() {
-		return "MemberVO [member_id=" + member_id + ", member_pw=" + member_pw + ", member_name=" + member_name
-				+ ", member_email=" + member_email + ", member_phone=" + member_phone + ", member_birthdate="
-				+ member_birthdate + "]";
-	}
-	
 }

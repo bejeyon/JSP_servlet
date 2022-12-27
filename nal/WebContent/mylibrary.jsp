@@ -1,4 +1,7 @@
-<!-- 국회소장자료 : 일반자료 상단 메뉴 --><!-- 국회소장자료 : 공공정책자료 상단 메뉴 --><!-- 국회소장자료 : 왼쪽 메뉴 --><!-- 외부기관소장자료 : 왼쪽메뉴 -->
+<!-- 내서재: 이기쁨 -->
+<!-- 1946~1966번 째 줄: 내가저장한 도서 목록 출력 -->
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@page import="book.model.*"%>

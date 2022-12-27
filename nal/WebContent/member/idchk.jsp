@@ -12,9 +12,11 @@
 <body>
 <form action="idchk.do" method="get" name="frm">
 	<h4 class="popTit">아이디 중복확인</h4>
-	<!--아이디 <input type=text name="member_id">
+	<!--작성자 문수지
+		아이디 <input type=text name="member_id">
 			 <중복체크> 버튼 클릭 시 idChk.do가 요청되어 다시 아이디 중복체크 진행 
 			<input type=submit value="중복체크"> -->
+			
 		<!-- 서블릿에서 넘겨준 result 값이 1일 경우 중복된 아이디 존재 -->
 		<c:if test="${result == 1 }">
 			<script type="text/javascript">

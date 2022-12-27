@@ -27,8 +27,7 @@
                 </li>
                 <li data-url="/member/insertMemberForm1.do, /member/insertMemberForm2.do, /member/insertMemberForm3.do, /member/insertMemberForm4.do,
                                 /member/insertMemberForm5.do, /member/insertMemberForm6.do, /member/selectMember.do, /member/insertMemberFormKid1.do, /member/insertMemberFormKid2.do">
-                   <a href="selectMember.do">회원가입</a>  <!-- 14세미만 선택화면 20211026 -->
-<!--                     <a href="/member/insertMemberForm1.do">회원가입</a> -->
+                   <a href="selectMember.do">회원가입</a>
                 </li>
                 <li data-url="/member/searchIdPwdForm.do, /member/searchPwdForm.do, /member/searchIdPwdProc.do, /member/searchIdPwdProc.do">
                     <a href="searchIdPwdForm.do">아이디/비밀번호 찾기</a>
@@ -39,9 +38,6 @@
                     <a href="#">열람증</a>
                     <ul>
                         <li data-url="/member/mobilePassForm.do, /member/insertPassForm.do"><a href="/member/mobilePassForm.do">모바일 간편열람증</a></li>
-<!--                         <li data-url="/member/studentPassForm.do"> -->
-<!--                             <a href="/member/studentPassForm.do">학생증 시범사업</a> -->
-<!--                         </li> -->
                     </ul>
                 </li>
 
@@ -49,135 +45,6 @@
         </div><!-- //왼쪽메뉴 -->
     </div>
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-//<![CDATA[ 
-           
-  $(function(){
-
-  });
-  
-  	/*
-  	* valid 체크
-  	*/
-	var isValid = function(){
-		var password = $("#searchPassword").val();		// 새비밀번호
-		var repassword = $("#searchRePassword").val();  // 새비밀번호 확인
-		
-		
-		if(password==""){
-			alert("새 비밀번호를 입력하세요");
-			
-			$("#searchPassword").focus();
-			return false;
-		}
-		
-		if(pwdCheckNew(password)){
-			if(repassword==""){
-				alert("새 비밀번호 확인을 입력하세요");
-				$("#searchRePassword").focus();
-				return false;
-			}
-			if(password != repassword){
-				alert("입력하신 비밀번호가 서로 다릅니다.");
-				$("#searchPassword").val("");
-				$("#searchRePassword").val("");
-				$("#searchPassword").focus();
-				return false;
-			}
-		}else{
-			return false;
-		}
-
-		
-		/* 20221011
-		if (checkPw(password) == false) {
-			alert("비밀번호에는 영문 대,소문자와 숫자만 사용 가능합니다.");
-			return false;
-		}*/
-		
-
-		
-		return true;
-	};
-
-	/*
-	* 비밀번호 규칙 체크
-	*/
-	var checkPw = function(value)
-	{
-		var check = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,12}$/; //(?=.*[!@#$%^*+=-])
-		if(value != ""){
-			//if(!/^[a-zA-Z0-9]{4,12}$/.test(value))
-			if (value.length < 4 || value.length > 12) {
-				alert("비밀번호는 4 ~ 12 자리로 입력해주세요.");
-				return false;
-			}		
-// 			if(!check.test(value)){ 
-				//alert('비밀번호는 문자, 숫자, 특수문자의 조합으로 입력해주세요.'); 
-// 				return false;
-// 			}
-			
-			if(/(\w)\1\1\1/.test(value))
-			{
-				alert('비밀번호에 같은 문자를 4번 이상 사용하실 수 없습니다.'); 
-				return false;
-			}
-		}
-
-		return true;
-	};
-
-	/*
-	* capsLock on,off 여부
-	*/
-	var capsLock = function(e){
-	  var keyCode = 0;
-	  var shiftKey=false;
-	  keyCode=e.keyCode;
-	  shiftKey=e.shiftKey;
-	  if (((keyCode >= 65 && keyCode <= 90)&& !shiftKey)||((keyCode >= 97 && keyCode <= 122)&& shiftKey))
-	  {
-		alert("CapsLock이 켜져 있습니다");
-		return;
-	  }
-	};
-  
-  
-  /*
-  * 비밀번호 변경
-  */
-  var changePwd = function(){
-  	if(isValid()){
- 		if(confirm("비밀번호를 변경 하시겠습니까?")){
- 			$("#searchMemberVO").attr("action", "/member/changePwdProc.do").submit();
- 		}
-  	}
-  };
-  
-  
-	/*
-	*  취소
-	*/
-	var cancel = function(){
-		//location.href = "/main.do";
-		window.history.back();
-	};
-	         
-//]]>
-</script>	
 <form id="MemberVO" action="changePwdForm.do" method="post" name="changepwdfrm">
 <input id="searchId" name="searchId" type="hidden" value="${member_id}"/>
 <input id="searchNoSeq" name="searchNoSeq" type="hidden" value=""/>
@@ -245,7 +112,8 @@
                                               <input type="submit" value="확인" onclick="return changePwd()"/>
                                               <input type="button" value="취소" onclick="location.href='searchIdPwdForm.jsp' ">
                                         </div>
-<script>                                    
+<script>
+// 작성자 문수지
   function changePwd() { 
   	if (changepwdfrm.member_pw.value == "") {
 		alert("비밀번호를 입력하세요!");
@@ -297,64 +165,6 @@
         </div>
   </form>
 	
-
-
-
-
-
-<!-- [start] 접속 로그 -->
-<script type="text/javascript">
-
-    //컨텐츠 경로 구분 값(전체페이지 공통)
-    var _TRK_CP = "";
-    var TEXT = "";
-    $('.location li').each(function(index, item){
-        if(index > 0){
-            if(window.location.href.indexOf('monthLibView.do') > -1){
-                TEXT = '월간 국회도서관';
-            }else{
-                TEXT = $(item).find('a').text();
-            }
-            _TRK_CP += "^"+TEXT;
-        }
-    });
-
-
-
-
-
-
-    
-
-
-
-    // 연령 추출
-    function getAges(birthday){
-        var ages = new Date().getFullYear() - Number(birthday.substr(0,4)) + 1;
-
-        if(ages <= 9){
-            return "A";
-        }else if(ages <= 19){
-            return "B";
-        }else if(ages <= 29){
-            return "C";
-        }else if(ages <= 39){
-            return "D";
-        }else if(ages <= 49){
-            return "E";
-        }else if(ages <= 59){
-            return "F";
-        }else if(ages <= 69){
-            return "G";
-        }else if(ages >= 70){
-            return "H";
-        }else{
-            return "";
-        }
-    }
-</script>
-
-
     <script type='text/javascript' src="/js/bs_trk.js"></script>
 
 <script type="text/javascript" defer='defer'>/* CLICKZONE SCRIPT V.V.4 *//*X*//* COPYRIGHT 2002-2017 BIZSPRING INC. *//*X*//* DO NOT MODIFY THIS SCRIPT. *//*X*/

@@ -5,13 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지>회원가입</title>
-<!-- 입력 폼을 수행하기 위함 >> joinChk(), idChk() 함수가 member.js에 정의됨 -->
+<!--작성자 문수지 
+	입력 폼을 수행하기 위함 >> joinChk(), idChk() 함수가 member.js에 정의됨 -->
 <script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
 <h2>회원 가입</h2>
 *표시는 필수 입력사항 입니다.
-	<!-- aciton 속성 값이 "join.do"이기 때문에 <확인>버튼 클릭 시 "join.do" 요청 -->
+	<!--작성자 문수지 
+		aciton 속성 값이 "join.do"이기 때문에 <확인>버튼 클릭 시 "join.do" 요청 -->
 	<form action="join.do" method="post" name="frm">
 		<table>
 			<tr>

@@ -18,8 +18,7 @@
                 </li>
                 <li data-url="/member/insertMemberForm1.do, /member/insertMemberForm2.do, /member/insertMemberForm3.do, /member/insertMemberForm4.do,
                                 /member/insertMemberForm5.do, /member/insertMemberForm6.do, /member/selectMember.do, /member/insertMemberFormKid1.do, /member/insertMemberFormKid2.do">
-                   <a href="selectMember.do">회원가입</a>  <!-- 14세미만 선택화면 20211026 -->
-<!--                     <a href="/member/insertMemberForm1.do">회원가입</a> -->
+                   <a href="selectMember.do">회원가입</a>
                 </li>
                 <li data-url="/member/searchIdPwdForm.do, /member/searchPwdForm.do, /member/searchIdPwdProc.do, /member/searchIdPwdProc.do">
                     <a href="searchIdPwdForm.do">아이디/비밀번호 찾기</a>
@@ -30,31 +29,21 @@
                     <a href="#">열람증</a>
                     <ul>
                         <li data-url="/member/mobilePassForm.do, /member/insertPassForm.do"><a href="/member/mobilePassForm.do">모바일 간편열람증</a></li>
-<!--                         <li data-url="/member/studentPassForm.do"> -->
-<!--                             <a href="/member/studentPassForm.do">학생증 시범사업</a> -->
-<!--                         </li> -->
+
                     </ul>
                 </li>
 
             </ul>
         </div><!-- //왼쪽메뉴 -->
     </div>
-	
-
-
-<!-- 휴대폰 인증 
-<form name="sciCertForm" method="post" action="">
-    <input type="hidden" name="id"       value = "SNAQ001" />
-    <input type="hidden" name="srvNo"    value = "001001" />
-    <input type="hidden" name="certGb"   value = "H" />
-	<input type="hidden" name="retUrl"   value = "31https://www.nanet.go.kr/member/insertMemberBizForm.do" />
-</form>
--->
 
 <form id="memberVO" action="insertMemberBizForm.do" method="post" name="joinfrm">
+<!-- 작성자 문수지 -->
+<!-- 다음 주소찾기 API 사용 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script> -->
 <script>
+// 작성자 문수지
+
 // 중복체크페이지를 새로운 창으로 띄우기 위한 함수
 var count=0;
 function idChk() {
@@ -87,7 +76,7 @@ function doroAddressPopup() {
     new daum.Postcode( {
         oncomplete : function(data) {  	
         	
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
            var fullAddr = ''; // 최종 주소 변수

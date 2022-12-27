@@ -1,3 +1,14 @@
+<!-- 메인페이지: 이기쁨 -->
+<!-- 10~13번째 줄: 회원아이디 세션값  -->
+<!-- 각 탭에 이동 경로 설정 -->
+<!-- 오른쪽 움직이는 탭에 로그인/회원명 구분해서 출력 -->
+<!-- 98, 100번째 줄 검색 기능 -->
+<!-- 638번째 줄 pushSearch() function: 입력한 키워드 서블릿으로 전송 -->
+
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="usermadang.board.model.FreeboardDAO"%>
@@ -6,7 +17,6 @@
 
 <% 	 
 	String sessionId = (String) session.getAttribute("sessionId");
-	FreeboardDAO dao = FreeboardDAO.getInstance();
 	String member_name = (String) session.getAttribute("sessionName");
 %> 
     

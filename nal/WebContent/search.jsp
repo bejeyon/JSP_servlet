@@ -1,4 +1,12 @@
-<!-- 국회소장자료 : 일반자료 상단 메뉴 --><!-- 국회소장자료 : 공공정책자료 상단 메뉴 --><!-- 국회소장자료 : 왼쪽 메뉴 --><!-- 외부기관소장자료 : 왼쪽메뉴 -->
+<!-- 도서 검색 창: 이기쁨 -->
+<!-- !!!!!!!!!!!!!!!!!!엔터누르지말고 버튼 클릭!!!!!!!!!!!!!!!!!!!!!! -->
+<!-- 10~13번째 줄: 회원아이디 세션값  -->
+<!-- 91~129번째 줄: JQuery에서 JSON을 이용해 Ajax 기능 사용하기 -->
+<!-- 314, 324번째 줄: 검색 -->
+<!-- 1477번째 줄: 출력하는 곳 -->
+<!-- 1480~1506번 째 줄: 메인창에서 검색했을 경우 출력 -->
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false" %>
 <%@page import="book.model.*"%>
@@ -8,7 +16,6 @@
 
 <% 	 
 	String sessionId = (String) session.getAttribute("sessionId");
-	FreeboardDAO dao = FreeboardDAO.getInstance();
 	String member_name = (String) session.getAttribute("sessionName");
 %>
 
@@ -86,8 +93,8 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function() {
-		$("#showbookinfo").click(function() {
-			var putkeyword = $("#putkeyword").val();
+		$("#showbookinfo").click(function() {			//id showbookinfo 를 클릭할때 함수 실행
+			var putkeyword = $("#putkeyword").val();	//id가 putkeyword인 곳에서 밸류 값을 받아옴
 			if(putkeyword == '') {
 				alert("검색어를 입력하세요");
 				return;
@@ -97,7 +104,7 @@
 				type:"post",	//post 방식으로 전송
 				async:false,	//동기식으로 처리
 				url:"${contextPath}/search.nal",			//전송할 서블릿 지정
-				data: {keyword: putkeyword},
+				data: {keyword: putkeyword},				//putkeyword를 keyword란 이름으로 서블릿으로 전송
 				success:function (data, textStatus){	//전송과 응답이 성공했을 경우 작업 설정
 					console.log(data);
 					var jsoninfo = JSON.parse(data);	//서블릿에서 가져온 데이터를 받음
@@ -113,7 +120,7 @@
 					}
 					bookinfo += "</ul>" 
 						console.log(data);
-					$("#output").html(bookinfo);
+					$("#output").html(bookinfo);	//id output 에 bookinfo 를 html로 출력해줌
 				}, //end success function
 				error: function (data, textStatus) {
 					alert("에러가 발생했습니다.");
@@ -305,7 +312,7 @@ function searchCom()
 
                 end : 다국어 page
  -->                
-             <!--    <input type = "text" id = "putkeyword" /> -->
+             
                 <input type="text" class="inputText" id="putkeyword" name="searchQuery" onfocus="setFocusIdForMultiLang('searchQuery');this.select();" title="검색 입력창"
                  autocomplete="off" placeholder="검색어를 입력해주세요"
                  >
@@ -1472,7 +1479,7 @@ function searchCom()
                 <div class="searchList" id = "output">
                  
                 
-                 <c:choose>
+        <c:choose>
 			<c:when test="${(count == 0) && (infoArr==null)}">
 				<tr>
 					<td>책이 없습니다.</td>					
@@ -1482,24 +1489,25 @@ function searchCom()
 			<c:when test="${(count == 0) && (infoArr != null)}">
 				<ul class="list">
 				<c:forEach var="list" items="${infoArr}">
-					<li><a href='javascript:searchInnerDetail('MONO1201539978', 'Y')' title='상세 바로가기'>
-					
-						${list.book_title} / 
-				
+					<li><a href='javascript:searchInnerDetail('MONO1201539978', 'Y')' title='상세 바로가기'>					
+						${list.book_title} / 				
 						${list.author}
 						<img src='./images/ko/ico/star_30.png' alt='인기도' /></a>
 						<ul>
-						<li>${list.publishing}</li>
-						<li>${list.book_sorting}</li>
-						<li>${list.room_name}</li>
-						
+							<li>${list.publishing}</li>
+							<li>${list.book_sorting}</li>
+							<li>${list.room_name}</li>						
 						</ul>
-						<a href = './mylibrary.nal?isbn=${list.isbn}' title='내서재담기'><img src='./images/ko/ico/briefIco1.png' alt='인기도' /></a>
-						</li>			
+						<a href = './mylibrary.nal?isbn=${list.isbn}' title='내서재담기'>
+							<img src='./images/ko/ico/briefIco1.png' alt='인기도' />
+						</a>
+					</li>			
 				</c:forEach>
 				</ul>		
 			</c:when>		
 		</c:choose>
+		
+		
                 </div>
                 
                 

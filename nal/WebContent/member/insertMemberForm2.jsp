@@ -40,67 +40,12 @@
                     <a href="#">열람증</a>
                     <ul>
                         <li data-url="/member/mobilePassForm.do, /member/insertPassForm.do"><a href="/member/mobilePassForm.do">모바일 간편열람증</a></li>
-<!--                         <li data-url="/member/studentPassForm.do"> -->
-<!--                             <a href="/member/studentPassForm.do">학생증 시범사업</a> -->
-<!--                         </li> -->
                     </ul>
                 </li>
 
             </ul>
         </div><!-- //왼쪽메뉴 -->
     </div>
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-	$(document).ready(function () {
-	
-	});
-	
-	function Initialize(){
-		document.getElementById("ContentBody").focus();
-	}
-	
-	//휴대폰 인증
-	function sciCert(){
-		// 휴대폰 인증 팝업창 호출
-		var sci_window=window.open('','sciCertWindow', 'width=430, height=560, resizable=0, scrollbars=no, status=0, titlebar=0, toolbar=0, left=300, top=200' );
-		
-		if(sci_window == null){
-			alert(" ※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.");
-		}
-		document.sciCertForm.action = 'https://www.nanet.go.kr/member/sciCertPopup.do';// 가상식별 실명확인서비스 URL
-		document.sciCertForm.target = 'sciCertWindow';
-		document.sciCertForm.submit();
-	}
-	
-	//실명인증
-	function openCBAWindow(){
-		var CBA_window = window.open('', 'IPINWindow', 'width=455, height=555, resizable=0, scrollbars=no, status=0, titlebar=0, toolbar=0, left=300, top=200' );
-
-		if(CBA_window == null){ 
-			alert(" ※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.");
-		}
-		document.sciCertIpinForm.action = 'https://www.nanet.go.kr/member/sciCertIpinPopup.do';
-		document.sciCertIpinForm.target = 'IPINWindow';
-		document.sciCertIpinForm.submit();
-	}
-	
-	function resultPage(param) {
-		$("#retInfo").val(param);
-		$("#memberVO").attr("action", "/member/insertMemberIpinForm.do").submit();
-	}
 	
 </script>
 <form name="sciCertForm" method="post" action="">
@@ -197,64 +142,6 @@
 	</div>
 </div>
 </form>
-	
-
-
-
-
-
-<!-- [start] 접속 로그 -->
-<script type="text/javascript">
-
-    //컨텐츠 경로 구분 값(전체페이지 공통)
-    var _TRK_CP = "";
-    var TEXT = "";
-    $('.location li').each(function(index, item){
-        if(index > 0){
-            if(window.location.href.indexOf('monthLibView.do') > -1){
-                TEXT = '월간 국회도서관';
-            }else{
-                TEXT = $(item).find('a').text();
-            }
-            _TRK_CP += "^"+TEXT;
-        }
-    });
-
-
-
-
-
-
-    
-
-
-
-    // 연령 추출
-    function getAges(birthday){
-        var ages = new Date().getFullYear() - Number(birthday.substr(0,4)) + 1;
-
-        if(ages <= 9){
-            return "A";
-        }else if(ages <= 19){
-            return "B";
-        }else if(ages <= 29){
-            return "C";
-        }else if(ages <= 39){
-            return "D";
-        }else if(ages <= 49){
-            return "E";
-        }else if(ages <= 59){
-            return "F";
-        }else if(ages <= 69){
-            return "G";
-        }else if(ages >= 70){
-            return "H";
-        }else{
-            return "";
-        }
-    }
-</script>
-
 
     <script type='text/javascript' src="/js/bs_trk.js"></script>
 
